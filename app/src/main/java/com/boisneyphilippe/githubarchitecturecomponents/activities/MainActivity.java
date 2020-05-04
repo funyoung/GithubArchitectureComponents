@@ -1,24 +1,14 @@
 package com.boisneyphilippe.githubarchitecturecomponents.activities;
 
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.boisneyphilippe.githubarchitecturecomponents.R;
 import com.boisneyphilippe.githubarchitecturecomponents.fragments.UserProfileFragment;
 
-import javax.inject.Inject;
-
 import dagger.android.AndroidInjection;
-import dagger.android.AndroidInjector;
-import dagger.android.DispatchingAndroidInjector;
-import dagger.android.support.HasSupportFragmentInjector;
+import dagger.android.support.DaggerAppCompatActivity;
 
-public class MainActivity extends AppCompatActivity implements HasSupportFragmentInjector {
-
-    @Inject
-    DispatchingAndroidInjector<Fragment> dispatchingAndroidInjector;
-
+public class MainActivity extends DaggerAppCompatActivity {
     private static String USER_LOGIN = "JakeWharton";
 
     @Override
@@ -30,10 +20,6 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
         this.showFragment(savedInstanceState);
     }
 
-    @Override
-    public DispatchingAndroidInjector<Fragment> supportFragmentInjector() {
-        return dispatchingAndroidInjector;
-    }
 
     // ---
 
