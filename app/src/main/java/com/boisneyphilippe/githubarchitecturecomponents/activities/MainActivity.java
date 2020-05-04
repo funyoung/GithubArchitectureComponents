@@ -1,14 +1,12 @@
 package com.boisneyphilippe.githubarchitecturecomponents.activities;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.boisneyphilippe.githubarchitecturecomponents.R;
 import com.boisneyphilippe.githubarchitecturecomponents.fragments.UserProfileFragment;
 
-import dagger.android.AndroidInjection;
-import dagger.android.support.DaggerAppCompatActivity;
-
-public class MainActivity extends DaggerAppCompatActivity {
+public class MainActivity extends AppCompatActivity {
     private static String USER_LOGIN = "JakeWharton";
 
     @Override
@@ -16,10 +14,9 @@ public class MainActivity extends DaggerAppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.configureDagger();
         this.showFragment(savedInstanceState);
     }
-    
+
     private void showFragment(Bundle savedInstanceState){
         if (savedInstanceState == null) {
 
@@ -33,9 +30,5 @@ public class MainActivity extends DaggerAppCompatActivity {
                     .add(R.id.fragment_container, fragment, null)
                     .commit();
         }
-    }
-
-    private void configureDagger(){
-        AndroidInjection.inject(this);
     }
 }

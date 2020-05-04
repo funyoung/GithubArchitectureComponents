@@ -13,9 +13,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.Executor;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -23,8 +20,6 @@ import retrofit2.Response;
 /**
  * Created by Philippe on 02/03/2018.
  */
-
-@Singleton
 public class UserRepository {
 
     private static int FRESH_TIMEOUT_IN_MINUTES = 1;
@@ -33,12 +28,12 @@ public class UserRepository {
     private final UserDao userDao;
     private final Executor executor;
 
-    @Inject
     public UserRepository(UserWebservice webservice, UserDao userDao, Executor executor) {
         this.webservice = webservice;
         this.userDao = userDao;
         this.executor = executor;
     }
+
 
     // ---
 

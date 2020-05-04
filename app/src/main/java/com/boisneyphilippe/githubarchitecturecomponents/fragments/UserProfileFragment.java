@@ -15,14 +15,12 @@ import android.widget.TextView;
 import com.boisneyphilippe.githubarchitecturecomponents.R;
 import com.boisneyphilippe.githubarchitecturecomponents.database.entity.User;
 import com.boisneyphilippe.githubarchitecturecomponents.view_models.UserProfileViewModel;
+import com.boisneyphilippe.githubarchitecturecomponents.view_models.Injection;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
-import javax.inject.Inject;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import dagger.android.support.AndroidSupportInjection;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,8 +29,10 @@ public class UserProfileFragment extends Fragment {
 
     // FOR DATA
     public static final String UID_KEY = "uid";
-    @Inject
-    ViewModelProvider.Factory viewModelFactory;
+    /**
+     * todo: instance dependency
+     */
+    private final ViewModelProvider.Factory viewModelFactory = Injection.injectUserProfileViewModelFactory();
     private UserProfileViewModel viewModel;
 
     // FOR DESIGN
@@ -53,17 +53,12 @@ public class UserProfileFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        this.configureDagger();
         this.configureViewModel();
     }
 
     // -----------------
     // CONFIGURATION
     // -----------------
-
-    private void configureDagger(){
-        AndroidSupportInjection.inject(this);
-    }
 
     private void configureViewModel(){
         String userLogin = getArguments().getString(UID_KEY);

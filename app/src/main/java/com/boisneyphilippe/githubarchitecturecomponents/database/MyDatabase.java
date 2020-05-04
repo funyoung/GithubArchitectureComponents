@@ -1,10 +1,8 @@
 package com.boisneyphilippe.githubarchitecturecomponents.database;
 
 import android.arch.persistence.room.Database;
-import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
-import android.content.Context;
 
 import com.boisneyphilippe.githubarchitecturecomponents.database.converter.DateConverter;
 import com.boisneyphilippe.githubarchitecturecomponents.database.dao.UserDao;
