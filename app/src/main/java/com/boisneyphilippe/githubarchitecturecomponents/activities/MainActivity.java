@@ -19,10 +19,7 @@ public class MainActivity extends DaggerAppCompatActivity {
         this.configureDagger();
         this.showFragment(savedInstanceState);
     }
-
-
-    // ---
-
+    
     private void showFragment(Bundle savedInstanceState){
         if (savedInstanceState == null) {
 
