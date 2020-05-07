@@ -3,8 +3,8 @@ package com.boisneyphilippe.githubarchitecturecomponents.view_models;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 
-import com.boisneyphilippe.githubarchitecturecomponents.database.entity.User;
-import com.boisneyphilippe.githubarchitecturecomponents.repositories.UserRepository;
+import com.boisneyphilippe.githubarchitecturecomponents.data.database.entity.User;
+import com.boisneyphilippe.githubarchitecturecomponents.data.repositories.UserRepository;
 
 /**
  * Created by Philippe on 02/03/2018.

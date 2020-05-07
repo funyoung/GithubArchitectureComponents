@@ -1,4 +1,4 @@
-package com.boisneyphilippe.githubarchitecturecomponents.fragments;
+package com.boisneyphilippe.githubarchitecturecomponents.ui.fragments;
 
 
 import android.arch.lifecycle.ViewModelProvider;
@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.boisneyphilippe.githubarchitecturecomponents.R;
-import com.boisneyphilippe.githubarchitecturecomponents.database.entity.User;
+import com.boisneyphilippe.githubarchitecturecomponents.data.database.entity.User;
 import com.boisneyphilippe.githubarchitecturecomponents.view_models.UserProfileViewModel;
 import com.boisneyphilippe.githubarchitecturecomponents.view_models.Injection;
 import com.bumptech.glide.Glide;

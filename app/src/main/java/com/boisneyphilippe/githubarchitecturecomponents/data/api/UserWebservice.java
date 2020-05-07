@@ -1,6 +1,6 @@
-package com.boisneyphilippe.githubarchitecturecomponents.api;
+package com.boisneyphilippe.githubarchitecturecomponents.data.api;
 
-import com.boisneyphilippe.githubarchitecturecomponents.database.entity.User;
+import com.boisneyphilippe.githubarchitecturecomponents.data.database.entity.User;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

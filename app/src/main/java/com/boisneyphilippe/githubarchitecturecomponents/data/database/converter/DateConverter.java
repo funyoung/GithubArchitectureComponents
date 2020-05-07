@@ -1,4 +1,4 @@
-package com.boisneyphilippe.githubarchitecturecomponents.database.converter;
+package com.boisneyphilippe.githubarchitecturecomponents.data.database.converter;
 
 import android.arch.persistence.room.TypeConverter;
 

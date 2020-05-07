@@ -1,4 +1,4 @@
-package com.boisneyphilippe.githubarchitecturecomponents.database.entity;
+package com.boisneyphilippe.githubarchitecturecomponents.data.database.entity;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.time.OffsetDateTime;
 import java.util.Date;
 
 /**

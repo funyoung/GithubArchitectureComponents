@@ -1,10 +1,10 @@
-package com.boisneyphilippe.githubarchitecturecomponents.activities;
+package com.boisneyphilippe.githubarchitecturecomponents.ui.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.boisneyphilippe.githubarchitecturecomponents.R;
-import com.boisneyphilippe.githubarchitecturecomponents.fragments.UserProfileFragment;
+import com.boisneyphilippe.githubarchitecturecomponents.ui.fragments.UserProfileFragment;
 
 public class MainActivity extends AppCompatActivity {
     private static String USER_LOGIN = "JakeWharton";

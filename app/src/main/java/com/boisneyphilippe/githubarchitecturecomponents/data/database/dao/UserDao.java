@@ -1,11 +1,11 @@
-package com.boisneyphilippe.githubarchitecturecomponents.database.dao;
+package com.boisneyphilippe.githubarchitecturecomponents.data.database.dao;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
-import com.boisneyphilippe.githubarchitecturecomponents.database.entity.User;
+import com.boisneyphilippe.githubarchitecturecomponents.data.database.entity.User;
 
 import java.util.Date;
 

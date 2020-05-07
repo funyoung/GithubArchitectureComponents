@@ -5,10 +5,10 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.arch.persistence.room.Room;
 
 import com.boisneyphilippe.githubarchitecturecomponents.App;
-import com.boisneyphilippe.githubarchitecturecomponents.api.UserWebservice;
-import com.boisneyphilippe.githubarchitecturecomponents.database.MyDatabase;
-import com.boisneyphilippe.githubarchitecturecomponents.database.dao.UserDao;
-import com.boisneyphilippe.githubarchitecturecomponents.repositories.UserRepository;
+import com.boisneyphilippe.githubarchitecturecomponents.data.api.UserWebservice;
+import com.boisneyphilippe.githubarchitecturecomponents.data.database.MyDatabase;
+import com.boisneyphilippe.githubarchitecturecomponents.data.database.dao.UserDao;
+import com.boisneyphilippe.githubarchitecturecomponents.data.repositories.UserRepository;
 import com.google.gson.Gson;
 
 import java.util.concurrent.Executor;

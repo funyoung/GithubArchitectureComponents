@@ -20,7 +20,7 @@ package com.boisneyphilippe.githubarchitecturecomponents.db;
 import android.arch.persistence.room.Room;
 import android.support.test.InstrumentationRegistry;
 
-import com.boisneyphilippe.githubarchitecturecomponents.database.MyDatabase;
+import com.boisneyphilippe.githubarchitecturecomponents.data.database.MyDatabase;
 
 import org.junit.After;
 import org.junit.Before;

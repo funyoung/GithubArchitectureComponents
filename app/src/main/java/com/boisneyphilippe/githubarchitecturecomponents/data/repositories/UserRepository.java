@@ -1,13 +1,13 @@
-package com.boisneyphilippe.githubarchitecturecomponents.repositories;
+package com.boisneyphilippe.githubarchitecturecomponents.data.repositories;
 
 import android.arch.lifecycle.LiveData;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.boisneyphilippe.githubarchitecturecomponents.App;
-import com.boisneyphilippe.githubarchitecturecomponents.api.UserWebservice;
-import com.boisneyphilippe.githubarchitecturecomponents.database.entity.User;
-import com.boisneyphilippe.githubarchitecturecomponents.database.dao.UserDao;
+import com.boisneyphilippe.githubarchitecturecomponents.data.api.UserWebservice;
+import com.boisneyphilippe.githubarchitecturecomponents.data.database.entity.User;
+import com.boisneyphilippe.githubarchitecturecomponents.data.database.dao.UserDao;
 
 import java.util.Calendar;
 import java.util.Date;

@@ -6,7 +6,7 @@
     android:background="#74b9ff"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context="com.boisneyphilippe.githubarchitecturecomponents.fragments.UserProfileFragment">
+    tools:context=".ui.fragments.UserProfileFragment">
 
     <RelativeLayout
         android:layout_width="wrap_content"
