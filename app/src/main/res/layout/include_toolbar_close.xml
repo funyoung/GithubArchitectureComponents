@@ -25,7 +25,8 @@
         android:layout_centerVertical="true"
         android:background="@drawable/entrance_rocket_icon"
         android:layout_marginEnd="14dp"
-        android:layout_marginRight="14dp" />
+        android:layout_marginRight="14dp"
+        android:visibility="gone"/>
 
     <View
         android:id="@+id/bg_toolbar_close"

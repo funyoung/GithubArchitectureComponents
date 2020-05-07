@@ -8,23 +8,22 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.NestedScrollView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.boisneyphilippe.githubarchitecturecomponents.R;
 import com.boisneyphilippe.githubarchitecturecomponents.data.database.entity.User;
 import com.boisneyphilippe.githubarchitecturecomponents.ui.RenderUtil;
-import com.boisneyphilippe.githubarchitecturecomponents.view_models.UserProfileViewModel;
 import com.boisneyphilippe.githubarchitecturecomponents.view_models.Injection;
+import com.boisneyphilippe.githubarchitecturecomponents.view_models.UserProfileViewModel;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.bumptech.glide.request.RequestOptions;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -45,6 +44,7 @@ public class UserProfileFragment extends Fragment implements AppBarLayout.OnOffs
 //    @BindView(R.id.fragment_user_profile_company) TextView company;
 //    @BindView(R.id.fragment_user_profile_website) TextView website;
     @BindView(R.id.header_avatar) ImageView headerAvatar;
+    @BindView(R.id.scroll_view) NestedScrollView scrollView;
 
     @BindView(R.id.app_bar) AppBarLayout appBar;
 
@@ -69,6 +69,38 @@ public class UserProfileFragment extends Fragment implements AppBarLayout.OnOffs
      * 收缩状态下toolbar的遮罩层
      */
     @BindView(R.id.bg_toolbar_close) View bgToolbarClose;
+
+    @OnClick(R.id.iv_back)
+    void onBackClicked() {
+        getActivity().onBackPressed();
+    }
+
+    @OnClick(R.id.iv_to_top)
+    void onScrollToTop() {
+//        CoordinatorLayout.Behavior behavior =
+//                ((CoordinatorLayout.LayoutParams) scrollView.getLayoutParams()).getBehavior();
+//        if (behavior instanceof AppBarLayout.ScrollingViewBehavior) {
+//            AppBarLayout.ScrollingViewBehavior scrollLayoutBehavior = (AppBarLayout.ScrollingViewBehavior) behavior;
+//            if(true){
+//                scrollLayoutBehavior.setTopAndBottomOffset(0); //快熟滑动到顶部
+//            }else {
+//                int height= scrollView.getHeight();
+//                scrollLayoutBehavior.setTopAndBottomOffset(-height);//快速滑动实现吸顶效果
+//            }
+//        }
+//
+//        behavior =
+//                ((CoordinatorLayout.LayoutParams) appBar.getLayoutParams()).getBehavior();
+//        if (behavior instanceof AppBarLayout.Behavior) {
+//            AppBarLayout.Behavior appBarLayoutBehavior = (AppBarLayout.Behavior) behavior;
+//            if(true){
+//                appBarLayoutBehavior.setTopAndBottomOffset(0); //快熟滑动到顶部
+//            }else {
+//                int height= appBar.getHeight();
+//                appBarLayoutBehavior.setTopAndBottomOffset(-height);//快速滑动实现吸顶效果
+//            }
+//        }
+    }
 
     public UserProfileFragment() { }
 
