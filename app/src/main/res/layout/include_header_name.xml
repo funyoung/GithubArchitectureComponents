@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- copy from https://app.zeplin.io/project/582e784a6954d5245d6c632b/screen/5eaaf45b1c743bb8f24026b4 -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:shadowColor="#80000000"
+    android:shadowDy="2"
+    android:shadowRadius="2"
+    android:textSize="16sp"
+    android:textColor="@color/white_four"
+    android:text="国学大师"
+    />

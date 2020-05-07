@@ -11,13 +11,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/fragment_user_profile_image"
-            android:layout_width="100dip"
-            android:layout_height="100dip"
-            android:background="@drawable/ic_face_white_24dp"/>
-
+        <include layout="@layout/include_user_avatar" />
     </RelativeLayout>
 
     <LinearLayout

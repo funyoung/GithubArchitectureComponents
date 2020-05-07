@@ -1,6 +1,7 @@
 package com.boisneyphilippe.githubarchitecturecomponents.data.database.entity;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -12,7 +13,6 @@ import java.util.Date;
 /**
  * Created by Philippe on 02/03/2018.
  */
-
 @Entity
 public class User {
 
@@ -45,7 +45,7 @@ public class User {
     private Date lastRefresh;
 
     // --- CONSTRUCTORS ---
-
+    @Ignore
     public User() { }
 
     public User(@NonNull String id, String login, String avatar_url, String name, String company, String blog, Date lastRefresh) {
