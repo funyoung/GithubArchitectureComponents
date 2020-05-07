@@ -5,6 +5,8 @@
     <dimen name="toolbar_height_expanse">299dp</dimen>
 
     <dimen name="circle_header_avatar_size">58dp</dimen>
+    <dimen name="circle_header_avatar_radius">5dp</dimen>
+
     <dimen name="toolbar_icon_size">40dp</dimen>
 
     <dimen name="circle_header_cover_height">284.7dp</dimen>

@@ -16,9 +16,11 @@ import android.widget.TextView;
 
 import com.boisneyphilippe.githubarchitecturecomponents.R;
 import com.boisneyphilippe.githubarchitecturecomponents.data.database.entity.User;
+import com.boisneyphilippe.githubarchitecturecomponents.ui.RenderUtil;
 import com.boisneyphilippe.githubarchitecturecomponents.view_models.UserProfileViewModel;
 import com.boisneyphilippe.githubarchitecturecomponents.view_models.Injection;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 
 import butterknife.BindView;
@@ -42,6 +44,7 @@ public class UserProfileFragment extends Fragment implements AppBarLayout.OnOffs
 //    @BindView(R.id.fragment_user_profile_username) TextView username;
 //    @BindView(R.id.fragment_user_profile_company) TextView company;
 //    @BindView(R.id.fragment_user_profile_website) TextView website;
+    @BindView(R.id.header_avatar) ImageView headerAvatar;
 
     @BindView(R.id.app_bar) AppBarLayout appBar;
 
@@ -105,6 +108,8 @@ public class UserProfileFragment extends Fragment implements AppBarLayout.OnOffs
 //            this.username.setText(user.getName());
 //            this.company.setText(user.getCompany());
 //            this.website.setText(user.getBlog());
+//            Glide.with(this).load(user.getAvatar_url()).apply(RequestOptions.circleCropTransform()).into(headerAvatar);
+            RenderUtil.rounding(Glide.with(this), headerAvatar, user.getAvatar_url(), R.drawable.circle_header_avatar, R.dimen.circle_header_avatar_radius);
         }
     }
 
@@ -118,9 +123,10 @@ public class UserProfileFragment extends Fragment implements AppBarLayout.OnOffs
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
         int maxAlpha = 255;
-        int r = Color.red(Color.DKGRAY);
-        int g = Color.green(Color.DKGRAY);
-        int b = Color.blue(Color.DKGRAY);
+        int toolbarCollapseColor = Color.GRAY;
+        int r = Color.red(toolbarCollapseColor);
+        int g = Color.green(toolbarCollapseColor);
+        int b = Color.blue(toolbarCollapseColor);
 
         //垂直方向偏移量
         int offset = Math.abs(verticalOffset);
@@ -140,6 +146,7 @@ public class UserProfileFragment extends Fragment implements AppBarLayout.OnOffs
             int alpha3 = (int) (maxAlpha * scale3);
             bgToolbarClose.setBackgroundColor(Color.argb(alpha3, r, b, b));
         }
+
         //根据偏移百分比计算扫一扫布局的透明度值
         float scale = (float) offset / scrollRange;
         int alpha = (int) (maxAlpha * scale);

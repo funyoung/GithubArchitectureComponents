@@ -11,7 +11,7 @@
         android:background="@drawable/circle_header_cover"
         android:layout_height="@dimen/circle_header_cover_height" />
 
-    <View
+    <ImageView
         android:id="@+id/header_avatar"
         android:layout_width="@dimen/circle_header_avatar_size"
         android:layout_height="@dimen/circle_header_avatar_size"
@@ -20,7 +20,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="14dp"
         android:layout_marginRight="14dp"
-        android:background="@drawable/circle_header_avatar"
+        android:src="@drawable/circle_header_avatar"
         />
     <include layout = "@layout/include_header_name"
         android:layout_width="wrap_content"
