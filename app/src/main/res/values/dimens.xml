@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="toolbar_height">50dp</dimen>
+    <dimen name="toolbar_height_expanse">299dp</dimen>
+
+    <dimen name="circle_header_avatar_size">58dp</dimen>
+    <dimen name="toolbar_icon_size">40dp</dimen>
+
+    <dimen name="circle_header_cover_height">284.7dp</dimen>
+    <dimen name="circle_header_name_height">23.7dp</dimen>
+</resources>
