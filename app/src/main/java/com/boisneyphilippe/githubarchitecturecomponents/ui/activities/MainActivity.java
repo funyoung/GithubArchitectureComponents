@@ -12,9 +12,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.motion_11_coordinatorlayout);
 
-        this.showFragment(savedInstanceState);
+//        this.showFragment(savedInstanceState);
     }
 
     private void showFragment(Bundle savedInstanceState){

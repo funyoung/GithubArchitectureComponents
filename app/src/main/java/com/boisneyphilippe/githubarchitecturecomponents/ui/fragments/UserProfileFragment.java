@@ -115,7 +115,6 @@ public class UserProfileFragment extends Fragment implements AppBarLayout.OnOffs
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         this.configureViewModel();
-
         appBar.addOnOffsetChangedListener(this);
     }
 
