@@ -24,16 +24,39 @@
                 app:attributeName="imageAlpha"
                 app:customIntegerValue="255" />
         </Constraint>
+
+        <Constraint
+            android:id="@android:id/home">
+            <CustomAttribute
+                app:attributeName="imageAlpha"
+                app:customIntegerValue="255" />
+        </Constraint>
+
         <Constraint
             android:id="@id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="24dp"
-            android:scaleX="1.0"
-            android:scaleY="1.0"
-            app:layout_constraintBottom_toBottomOf="@id/toolbar_image"
-            app:layout_constraintStart_toStartOf="parent">
+            android:alpha="0"
+            app:layout_constraintBottom_toBottomOf="@android:id/home"
+            app:layout_constraintStart_toEndOf="@android:id/home"
+            app:layout_constraintTop_toTopOf="@android:id/home">
+        </Constraint>
+
+        <Constraint
+            android:id="@id/header_avatar">
+            <CustomAttribute
+                app:attributeName="imageAlpha"
+                app:customIntegerValue="255" />
+        </Constraint>
+
+        <Constraint
+            android:id="@id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="255"
+            app:layout_constraintBottom_toBottomOf="@id/header_avatar"
+            app:layout_constraintEnd_toStartOf="@id/header_avatar"
+            app:layout_constraintTop_toTopOf="@id/header_avatar">
         </Constraint>
     </ConstraintSet>
 
@@ -48,17 +71,38 @@
                 app:attributeName="imageAlpha"
                 app:customIntegerValue="0" />
         </Constraint>
+
+        <Constraint
+            android:id="@android:id/home">
+            <CustomAttribute
+                app:attributeName="imageAlpha"
+                app:customIntegerValue="255" />
+        </Constraint>
+
         <Constraint
             android:id="@id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="0dp"
+            android:alpha="255">
+        </Constraint>
+
+        <Constraint
+            android:id="@id/header_avatar">
+            <CustomAttribute
+                app:attributeName="imageAlpha"
+                app:customIntegerValue="0" />
+        </Constraint>
+
+        <Constraint
+            android:id="@id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:scaleX="0.625"
             android:scaleY="0.625"
-            app:layout_constraintBottom_toBottomOf="@id/toolbar_image"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/toolbar_image">
+            android:alpha="0"
+            app:layout_constraintBottom_toBottomOf="@id/header_avatar"
+            app:layout_constraintEnd_toStartOf="@id/header_avatar"
+            app:layout_constraintTop_toTopOf="@id/header_avatar">
         </Constraint>
 
     </ConstraintSet>
