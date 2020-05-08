@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private FriendCircleAdapter mFriendCircleAdapter;
 
-    @BindView(R.id.recycler_view) RecyclerView recyclerView;
+    @BindView(R.id.recyclerview) RecyclerView recyclerView;
     @BindView(R.id.image_watcher) ImageWatcher imageWatcher;
     @BindView(R.id.emoji_panel_view) CommentPanelView commentPanelView;
 
