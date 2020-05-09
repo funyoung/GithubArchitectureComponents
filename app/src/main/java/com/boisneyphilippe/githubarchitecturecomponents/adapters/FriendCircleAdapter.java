@@ -2,9 +2,11 @@ package com.boisneyphilippe.githubarchitecturecomponents.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableStringBuilder;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,11 +32,11 @@ import com.boisneyphilippe.githubarchitecturecomponents.widgets.VerticalCommentW
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
+import com.github.ielse.imagewatcher.ImageWatcher;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.ielse.view.imagewatcher.ImageWatcher;
 
 /**
  * @author KCrason
@@ -119,8 +121,18 @@ public class FriendCircleAdapter extends RecyclerView.Adapter<FriendCircleAdapte
             } else if (holder instanceof WordAndImagesViewHolder) {
                 WordAndImagesViewHolder wordAndImagesViewHolder = (WordAndImagesViewHolder) holder;
                 wordAndImagesViewHolder.nineGridView.setOnImageClickListener((position1, view) ->
-                    mImageWatcher.show((ImageView) view, wordAndImagesViewHolder.nineGridView.getImageViews(),
-                            friendCircleBean.getImageUrls()));
+                {
+                    SparseArray<ImageView> imageGroupList = new SparseArray<>();
+                    int i = 0;
+                    for (ImageView imageView : wordAndImagesViewHolder.nineGridView.getImageViews()) {
+                        imageGroupList.put(i++, imageView);
+                    }
+                    List<Uri> urlList = new ArrayList<>();
+                    for (String str : friendCircleBean.getImageUrls()) {
+                        urlList.add(Uri.parse(str));
+                    }
+                    mImageWatcher.show((ImageView) view, imageGroupList,  urlList);
+                });
                 wordAndImagesViewHolder.nineGridView.setAdapter(new NineImageAdapter(mContext, mRequestOptions,
                         mDrawableTransitionOptions, friendCircleBean.getImageUrls()));
             }

@@ -1,6 +1,6 @@
 package com.boisneyphilippe.githubarchitecturecomponents.ui.activities;
 
-import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,16 +14,17 @@ import com.boisneyphilippe.githubarchitecturecomponents.beans.FriendCircleBean;
 import com.boisneyphilippe.githubarchitecturecomponents.interfaces.OnPraiseOrCommentClickListener;
 import com.boisneyphilippe.githubarchitecturecomponents.others.DataCenter;
 import com.boisneyphilippe.githubarchitecturecomponents.others.FriendsCircleAdapterDivideLine;
-import com.boisneyphilippe.githubarchitecturecomponents.others.GlideSimpleTarget;
 import com.boisneyphilippe.githubarchitecturecomponents.utils.Utils;
 import com.boisneyphilippe.githubarchitecturecomponents.widgets.CommentPanelView;
+import com.boisneyphilippe.githubarchitecturecomponents.widgets.GlideImageWatcherLoader;
 import com.bumptech.glide.Glide;
+import com.github.ielse.imagewatcher.ImageWatcher;
+import com.github.ielse.imagewatcher.ImageWatcherHelper;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import ch.ielse.view.imagewatcher.ImageWatcher;
 import io.reactivex.Single;
 import io.reactivex.SingleOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -31,7 +32,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity implements
-        OnPraiseOrCommentClickListener, ImageWatcher.OnPictureLongPressListener, ImageWatcher.Loader {
+        OnPraiseOrCommentClickListener, ImageWatcher.OnPictureLongPressListener {
 
     private static String USER_LOGIN = "JakeWharton";
 
@@ -39,8 +40,9 @@ public class MainActivity extends AppCompatActivity implements
 
     private FriendCircleAdapter mFriendCircleAdapter;
 
+    private ImageWatcher imageWatcher;
+
     @BindView(R.id.recyclerview) RecyclerView recyclerView;
-    @BindView(R.id.image_watcher) ImageWatcher imageWatcher;
     @BindView(R.id.emoji_panel_view) CommentPanelView commentPanelView;
 
     @Override
@@ -49,8 +51,13 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
 
 //        this.showFragment(savedInstanceState);
-
         ButterKnife.bind(this, this);
+
+
+        imageWatcher = ImageWatcherHelper.with(this) // 一般来讲，ImageWatcher尺寸占据全屏
+                .setLoader(new GlideImageWatcherLoader())
+                //.setIndexProvider(new DotIndexProvider()) // 自定义
+                .create();
 
         commentPanelView.initEmojiPanel(DataCenter.emojiDataSources);
         configRecyclerView(recyclerView, imageWatcher);
@@ -96,7 +103,6 @@ public class MainActivity extends AppCompatActivity implements
         imageWatcher.setTranslucentStatus(Utils.calcStatusBarHeight(this));
         imageWatcher.setErrorImageRes(R.mipmap.error_picture);
         imageWatcher.setOnPictureLongPressListener(this);
-        imageWatcher.setLoader(this);
     }
 
     private void updateScrolledUi(boolean idle) {
@@ -148,14 +154,8 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    @Override
-    public void onPictureLongPress(ImageView v, String url, int pos) {
-
-    }
-
 
     @Override
-    public void load(Context context, String url, ImageWatcher.LoadCallback lc) {
-        Glide.with(context).asBitmap().load(url).into(new GlideSimpleTarget(lc));
+    public void onPictureLongPress(ImageView var1, Uri var2, int var3) {
     }
 }

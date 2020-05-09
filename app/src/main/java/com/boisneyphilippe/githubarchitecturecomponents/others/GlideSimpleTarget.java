@@ -1,14 +1,15 @@
 package com.boisneyphilippe.githubarchitecturecomponents.others;
 
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.github.ielse.imagewatcher.ImageWatcher;
 
-import ch.ielse.view.imagewatcher.ImageWatcher;
 
 /**
  * @author KCrason
@@ -39,7 +40,7 @@ public class GlideSimpleTarget extends SimpleTarget<Bitmap> {
     @Override
     public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
         if (mLoadCallback != null) {
-            mLoadCallback.onResourceReady(resource);
+            mLoadCallback.onResourceReady(new BitmapDrawable(resource));
         }
     }
 }

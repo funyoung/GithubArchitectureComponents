@@ -21,13 +21,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_image"/>
 
-
-    <ch.ielse.view.imagewatcher.ImageWatcher
-        android:id="@+id/image_watcher"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-
     <com.boisneyphilippe.githubarchitecturecomponents.widgets.CommentPanelView
         android:id="@+id/emoji_panel_view"
         android:layout_width="match_parent"
