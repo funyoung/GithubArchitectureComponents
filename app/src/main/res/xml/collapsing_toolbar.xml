@@ -28,7 +28,7 @@
         <Constraint
             android:id="@id/header_padding"
             android:layout_width="wrap_content"
-            android:layout_height="14.3dp"
+            android:layout_height="40dp"
             android:visibility="visible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -88,7 +88,7 @@
         <Constraint
             android:id="@id/header_padding"
             android:layout_width="wrap_content"
-            android:layout_height="14.3dp"
+            android:layout_height="40dp"
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
