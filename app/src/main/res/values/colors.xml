@@ -8,6 +8,8 @@
     <color name="white_four">@color/white</color>
     <color name="circle_background">@color/white</color>
 
+    <color name="circle_message_panel_background">#575757</color>
+
     <color name="base_333333">#333333</color>
     <color name="base_F2F2F2">#f2f2f2</color>
     <color name="base_F8F8F8">#f8f8f8</color>
