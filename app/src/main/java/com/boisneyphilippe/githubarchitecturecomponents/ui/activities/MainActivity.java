@@ -91,6 +91,10 @@ public class MainActivity extends AppCompatActivity implements
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 updateScrolledUi(newState == RecyclerView.SCROLL_STATE_IDLE);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    int offset = recyclerView.computeVerticalScrollOffset();
+                    updateScrolledOffset(offset);
+                }
             }
 
             @Override

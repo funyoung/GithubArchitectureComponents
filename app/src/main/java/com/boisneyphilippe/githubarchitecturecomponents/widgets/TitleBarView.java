@@ -100,16 +100,19 @@ public class TitleBarView extends LinearLayout {
     public void updateByOffset(int offset) {
         if (offset < fadeOutOffsetMin) {
             changeState(STATE_INIT);
+            checkApplyingAlpha(1f);
         } else if (offset >= fadeOutOffsetMin && offset < fadeOutOffsetMax) {
             changeState(STATE_FADING_OUT);
             applyFadeOutEffect(offset);
         } else if (offset >= fadeOutOffsetMax && offset < fadeInOffsetMin) {
             changeState(STATE_FADING_OUT_END);
+            checkApplyingAlpha(0f);
         } else if (offset >= fadeInOffsetMin && offset < fadeInOffsetMax) {
             changeState(STATE_FADING_IN);
             applyFadeInEffect(offset);
         } else {
             changeState(STATE_FADING_IN_END);
+            checkApplyingAlpha(1f);
         }
     }
 
@@ -118,9 +121,13 @@ public class TitleBarView extends LinearLayout {
      * @param offset
      */
     private void applyFadeOutEffect(int offset) {
-        if (offset >= fadeOutOffsetMin && offset <= fadeOutOffsetMax) {
+        if (offset < fadeOutOffsetMin) {
+            checkApplyingAlpha(1f);
+        } else if (offset >= fadeOutOffsetMin && offset < fadeOutOffsetMax) {
             float alpha = ((float) fadeOutOffsetMax - offset) / (fadeOutOffsetMax - fadeOutOffsetMin);
             checkApplyingAlpha(alpha);
+        } else {
+            checkApplyingAlpha(0f);
         }
     }
 
@@ -135,22 +142,32 @@ public class TitleBarView extends LinearLayout {
      * @param offset
      */
     private void applyFadeInEffect(int offset) {
-        if (offset >= fadeInOffsetMin && offset <= fadeInOffsetMax) {
+        if (offset < fadeInOffsetMin) {
+            checkApplyingAlpha(0f);
+        } else if (offset >= fadeInOffsetMin && offset < fadeInOffsetMax) {
             float alpha = ((float) offset - fadeInOffsetMin) / (fadeInOffsetMax - fadeInOffsetMin);
             checkApplyingAlpha(alpha);
+        } else {
+            checkApplyingAlpha(1f);
         }
     }
 
     private void changeState(int newState) {
         if (newState != state) {
-            if (STATE_FADING_OUT_END == state && STATE_FADING_IN == newState) {
+            if (newState >= STATE_FADING_IN && state < STATE_FADING_IN ) {
                 setBackgroundResource(R.color.circle_title_bar_background);
                 titleView.setVisibility(VISIBLE);
                 iconView.setImageResource(R.drawable.back_drawable_black);
-            } else if (STATE_FADING_OUT_END == newState && STATE_FADING_IN == state) {
+                if (newState >= STATE_FADING_IN_END) {
+                    setAlpha(1f);
+                }
+            } else if (newState <= STATE_FADING_OUT_END && state > STATE_FADING_OUT_END) {
                 setBackgroundResource(0);
                 titleView.setVisibility(GONE);
                 iconView.setImageResource(R.drawable.back_drawable);
+                if (newState < STATE_FADING_OUT) {
+                    setAlpha(1f);
+                }
             }
 
             state = newState;
