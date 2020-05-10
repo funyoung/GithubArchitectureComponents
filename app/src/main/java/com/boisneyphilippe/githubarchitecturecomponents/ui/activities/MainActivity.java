@@ -18,6 +18,7 @@ import com.boisneyphilippe.githubarchitecturecomponents.others.FriendsCircleAdap
 import com.boisneyphilippe.githubarchitecturecomponents.utils.Utils;
 import com.boisneyphilippe.githubarchitecturecomponents.widgets.CommentPanelView;
 import com.boisneyphilippe.githubarchitecturecomponents.widgets.GlideImageWatcherLoader;
+import com.boisneyphilippe.githubarchitecturecomponents.widgets.TitleBarView;
 import com.bumptech.glide.Glide;
 import com.github.ielse.imagewatcher.ImageWatcher;
 import com.github.ielse.imagewatcher.ImageWatcherHelper;
@@ -37,13 +38,14 @@ public class MainActivity extends AppCompatActivity implements
 
     private ImageWatcher imageWatcher;
 
+    @BindView(R.id.title_bar_view) TitleBarView titleBarView;
     @BindView(R.id.recyclerview) RecyclerView recyclerView;
     @BindView(R.id.comment_panel_view) CommentPanelView commentPanelView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_circle);
 
 //        this.showFragment(savedInstanceState);
         ButterKnife.bind(this, this);
@@ -117,8 +119,10 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    //
     private void updateScrolledOffset(int offset) {
+        if (null != titleBarView) {
+            titleBarView.updateByOffset(offset);
+        }
         Log.i(TAG, "updateScrolledOffset: " + offset);
     }
 

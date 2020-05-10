@@ -2,7 +2,9 @@
 <resources>
 
     <dimen name="toolbar_height">50dp</dimen>
-    <dimen name="toolbar_height_expanse">299dp</dimen>
+
+    <dimen name="circle_header_cover_offset_bottom">299dp</dimen>
+    <dimen name="circle_header_avatar_offset_top">241dp</dimen>
 
     <dimen name="circle_header_avatar_size">58dp</dimen>
     <dimen name="circle_header_avatar_radius">5dp</dimen>

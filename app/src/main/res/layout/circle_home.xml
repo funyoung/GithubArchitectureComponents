@@ -21,7 +21,7 @@
             <include
                 layout="@layout/include_open"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/toolbar_height_expanse"
+                android:layout_height="@dimen/circle_header_cover_offset_bottom"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.7" />
 

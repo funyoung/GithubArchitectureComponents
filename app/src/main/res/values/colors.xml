@@ -9,6 +9,7 @@
     <color name="circle_background">@color/white</color>
 
     <color name="circle_message_panel_background">#575757</color>
+    <color name="circle_title_bar_background">@android:color/darker_gray</color>
 
     <color name="base_333333">#333333</color>
     <color name="base_F2F2F2">#f2f2f2</color>
