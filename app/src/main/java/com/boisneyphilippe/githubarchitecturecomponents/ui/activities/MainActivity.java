@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements
     private ImageWatcher imageWatcher;
 
     @BindView(R.id.recyclerview) RecyclerView recyclerView;
-    @BindView(R.id.emoji_panel_view) CommentPanelView commentPanelView;
+    @BindView(R.id.comment_panel_view) CommentPanelView commentPanelView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,12 +94,14 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
+                int offset = recyclerView.computeVerticalScrollOffset();
+                updateScrolledOffset(offset);
             }
         });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new FriendsCircleAdapterDivideLine());
-        mFriendCircleAdapter = new FriendCircleAdapter(this, recyclerView, imageWatcher);
+        mFriendCircleAdapter = new FriendCircleAdapter(this, imageWatcher);
         recyclerView.setAdapter(mFriendCircleAdapter);
 
         imageWatcher.setTranslucentStatus(Utils.calcStatusBarHeight(this));
@@ -113,6 +115,11 @@ public class MainActivity extends AppCompatActivity implements
         } else {
             Glide.with(this).pauseRequests();
         }
+    }
+
+    //
+    private void updateScrolledOffset(int offset) {
+        Log.i(TAG, "updateScrolledOffset: " + offset);
     }
 
     // todo: make this task background.

@@ -22,7 +22,7 @@
         app:layout_constraintTop_toBottomOf="@+id/circle_message_padding"/>
 
     <com.boisneyphilippe.githubarchitecturecomponents.widgets.CommentPanelView
-        android:id="@+id/emoji_panel_view"
+        android:id="@+id/comment_panel_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="bottom" />

@@ -3,7 +3,6 @@ package com.boisneyphilippe.githubarchitecturecomponents.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -58,18 +57,12 @@ public class FriendCircleAdapter extends RecyclerView.Adapter<FriendCircleAdapte
 
     private OnPraiseOrCommentClickListener mOnPraiseOrCommentClickListener;
 
-    private LinearLayoutManager mLayoutManager;
-
-    private RecyclerView mRecyclerView;
-
     private ImageWatcher mImageWatcher;
 
-    public FriendCircleAdapter(Context context, RecyclerView recyclerView, ImageWatcher imageWatcher) {
+    public FriendCircleAdapter(Context context, ImageWatcher imageWatcher) {
         this.mContext = context;
         this.mImageWatcher = imageWatcher;
-        mRecyclerView = recyclerView;
-        this.mLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-        this.mAvatarSize = Utils.dp2px(44f);
+        this.mAvatarSize = context.getResources().getDimensionPixelSize(R.dimen.circle_stream_avatar_size);
         this.mLayoutInflater = LayoutInflater.from(context);
         this.mRequestOptions = new RequestOptions().centerCrop();
         this.mDrawableTransitionOptions = DrawableTransitionOptions.withCrossFade();
