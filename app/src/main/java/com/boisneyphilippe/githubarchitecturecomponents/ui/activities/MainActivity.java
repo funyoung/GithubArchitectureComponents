@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity implements
         OnPraiseOrCommentClickListener, ImageWatcher.OnPictureLongPressListener {
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     private static String USER_LOGIN = "JakeWharton";
 
@@ -59,8 +61,15 @@ public class MainActivity extends AppCompatActivity implements
                 //.setIndexProvider(new DotIndexProvider()) // 自定义
                 .create();
 
-        commentPanelView.initEmojiPanel(DataCenter.emojiDataSources);
         configRecyclerView(recyclerView, imageWatcher);
+
+        commentPanelView.setOnSendCommentListener(new CommentPanelView.OnSendCommentListener() {
+            @Override
+            public void onSendComment(String comment, int position) {
+                // todo: send comment.
+                Log.i(TAG, "onSendComment, position = " + position + ", " + comment);
+            }
+        });
 
 //        Utils.showSwipeRefreshLayout(this::asyncMakeData);
         asyncMakeData();
@@ -144,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onCommentClick(int position) {
 //        Toast.makeText(this, "you click comment", Toast.LENGTH_SHORT).show();
-        commentPanelView.showEmojiPanel();
+        commentPanelView.showCommentPanel(position);
     }
 
     @Override

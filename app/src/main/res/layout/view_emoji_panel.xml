@@ -61,19 +61,12 @@
                     android:background="@color/base_3FB838"/>
             </RelativeLayout>
 
-
-            <ImageView
-                android:id="@+id/img_switch"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:padding="8dp"
-                android:src="@drawable/input_smile_drawable"/>
-
-
             <TextView
+                android:id="@+id/comment_send"
                 android:layout_width="48dip"
                 android:layout_height="34dip"
                 android:background="@drawable/shape_send_bg"
+                android:enabled="false"
                 android:gravity="center"
                 android:text="发送"
                 android:textColor="@color/base_FFFFFF"/>
@@ -83,28 +76,5 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/base_DCDCDC"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/layout_emoji_panel"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical">
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@color/base_F2F2F2"
-            android:paddingTop="12dp"/>
-
-        <com.boisneyphilippe.githubarchitecturecomponents.widgets.HorizontalEmojiIndicators
-            android:id="@+id/emoji_indicators"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/base_FFFFFF"/>
-
-
     </LinearLayout>
 </LinearLayout>
