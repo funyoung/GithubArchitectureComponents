@@ -2,7 +2,6 @@ package com.boisneyphilippe.githubarchitecturecomponents.beans;
 
 import android.text.SpannableStringBuilder;
 
-import com.boisneyphilippe.githubarchitecturecomponents.enums.TranslationState;
 import com.boisneyphilippe.githubarchitecturecomponents.utils.Utils;
 
 import java.util.List;
@@ -45,16 +44,6 @@ public class FriendCircleBean {
 
     public void setShowCheckAll(boolean showCheckAll) {
         isShowCheckAll = showCheckAll;
-    }
-
-    private TranslationState translationState = TranslationState.START;
-
-    public void setTranslationState(TranslationState translationState) {
-        this.translationState = translationState;
-    }
-
-    public TranslationState getTranslationState() {
-        return translationState;
     }
 
     public boolean isShowComment() {

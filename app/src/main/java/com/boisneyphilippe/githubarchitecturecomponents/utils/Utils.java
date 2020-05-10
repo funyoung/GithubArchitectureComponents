@@ -1,6 +1,5 @@
 package com.boisneyphilippe.githubarchitecturecomponents.utils;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Paint;
 import android.util.TypedValue;
@@ -9,7 +8,6 @@ import android.widget.PopupMenu;
 
 import com.boisneyphilippe.githubarchitecturecomponents.App;
 import com.boisneyphilippe.githubarchitecturecomponents.R;
-import com.boisneyphilippe.githubarchitecturecomponents.enums.TranslationState;
 import com.boisneyphilippe.githubarchitecturecomponents.interfaces.OnItemClickPopupMenuListener;
 import com.boisneyphilippe.githubarchitecturecomponents.interfaces.OnStartSwipeRefreshListener;
 
@@ -68,54 +66,27 @@ public class Utils {
                 });
     }
 
-    public static void showPopupMenu(Context context, OnItemClickPopupMenuListener onItemClickPopupMenuListener,
-                                     int position, View view, TranslationState translationState) {
-        if (translationState != null) {
-            PopupMenu popup = new PopupMenu(context, view);
-            if (translationState == TranslationState.START) {
-                popup.getMenuInflater().inflate(R.menu.popup_menu_start, popup.getMenu());
-            } else if (translationState == TranslationState.CENTER) {
-                popup.getMenuInflater().inflate(R.menu.popup_menu_center, popup.getMenu());
-            } else if (translationState == TranslationState.END) {
-                popup.getMenuInflater().inflate(R.menu.popup_menu_end, popup.getMenu());
+    public static void showPopupMenu(Context context, OnItemClickPopupMenuListener onItemClickPopupMenuListener, int position, View view) {
+        PopupMenu popup = new PopupMenu(context, view);
+        popup.getMenuInflater().inflate(R.menu.popup_menu_start, popup.getMenu());
+
+        popup.setOnMenuItemClickListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.copy:
+                    if (onItemClickPopupMenuListener != null) {
+                        onItemClickPopupMenuListener.onItemClickCopy(position);
+                    }
+                    break;
+                case R.id.collection:
+                    if (onItemClickPopupMenuListener != null) {
+                        onItemClickPopupMenuListener.onItemClickCollection(position);
+                    }
+                    break;
+                default:
+                    break;
             }
-            popup.setOnMenuItemClickListener(item -> {
-                switch (item.getItemId()) {
-                    case R.id.copy:
-                        if (onItemClickPopupMenuListener != null) {
-                            onItemClickPopupMenuListener.onItemClickCopy(position);
-                        }
-                        break;
-                    case R.id.collection:
-                        if (onItemClickPopupMenuListener != null) {
-                            onItemClickPopupMenuListener.onItemClickCollection(position);
-                        }
-                        break;
-                    case R.id.translation:
-                        if (onItemClickPopupMenuListener != null) {
-                            onItemClickPopupMenuListener.onItemClickTranslation(position);
-                        }
-                        break;
-                    case R.id.hide_translation:
-                        if (onItemClickPopupMenuListener != null) {
-                            onItemClickPopupMenuListener.onItemClickHideTranslation(position);
-                        }
-                        break;
-                    default:
-                        break;
-                }
-                return true;
-            });
-            popup.show(); //showing popup menu
-        }
-    }
-
-
-    public static void startAlphaAnimation(View view, boolean isShowTranslation) {
-        if (isShowTranslation && view != null) {
-            ValueAnimator valueAnimator = ValueAnimator.ofFloat(0.5f, 1f);
-            valueAnimator.addUpdateListener(animation -> view.setAlpha((Float) animation.getAnimatedValue()));
-            valueAnimator.setDuration(500).start();
-        }
+            return true;
+        });
+        popup.show(); //showing popup menu
     }
 }

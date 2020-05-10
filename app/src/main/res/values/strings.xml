@@ -1,15 +1,8 @@
 <resources>
     <string name="app_name">@string/circle_title</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <string name="hello_text">天涯叨客</string>
     <string name="circle_title">穿越朋友圈</string>
-
-
-    <string name="translating">翻译中</string>
-    <string name="translated">已翻译</string>
 
     <string name="large_text">
         "Material is the metaphor.\n\n"

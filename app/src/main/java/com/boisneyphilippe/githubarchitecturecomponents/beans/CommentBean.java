@@ -4,7 +4,6 @@ import android.content.Context;
 import android.text.SpannableStringBuilder;
 
 import com.boisneyphilippe.githubarchitecturecomponents.Constants;
-import com.boisneyphilippe.githubarchitecturecomponents.enums.TranslationState;
 import com.boisneyphilippe.githubarchitecturecomponents.utils.SpanUtils;
 
 public class CommentBean {
@@ -20,16 +19,6 @@ public class CommentBean {
     private int childUserId;
 
     private String commentContent;
-
-    private TranslationState translationState = TranslationState.START;
-
-    public void setTranslationState(TranslationState translationState) {
-        this.translationState = translationState;
-    }
-
-    public TranslationState getTranslationState() {
-        return translationState;
-    }
 
     public int getCommentType() {
         return commentType;

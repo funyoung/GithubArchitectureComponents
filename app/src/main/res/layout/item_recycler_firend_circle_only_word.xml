@@ -29,8 +29,6 @@
 
         <include layout="@layout/include_item_recycler_content"/>
 
-        <include layout="@layout/view_translation_layout"/>
-
         <include layout="@layout/include_item_recycler_location"/>
 
         <include layout="@layout/include_item_recycler_time"/>

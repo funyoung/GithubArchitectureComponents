@@ -30,7 +30,6 @@
 
         <include layout="@layout/include_item_recycler_content"/>
 
-        <include layout="@layout/view_translation_layout"/>
         <com.boisneyphilippe.githubarchitecturecomponents.widgets.NineGridView
             android:id="@+id/nine_grid_view"
             android:layout_width="match_parent"

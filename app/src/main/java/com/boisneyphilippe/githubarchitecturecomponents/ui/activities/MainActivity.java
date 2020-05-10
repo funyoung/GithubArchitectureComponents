@@ -154,7 +154,6 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-
     @Override
     public void onPictureLongPress(ImageView var1, Uri var2, int var3) {
     }

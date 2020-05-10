@@ -28,8 +28,6 @@
 
         <include layout="@layout/include_item_recycler_content"/>
 
-        <include layout="@layout/view_translation_layout"/>
-
         <LinearLayout
             android:id="@+id/layout_url"
             android:layout_width="match_parent"
