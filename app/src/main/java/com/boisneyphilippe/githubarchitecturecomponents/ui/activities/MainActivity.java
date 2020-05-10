@@ -26,19 +26,12 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.reactivex.Single;
-import io.reactivex.SingleOnSubscribe;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity implements
         OnPraiseOrCommentClickListener, ImageWatcher.OnPictureLongPressListener {
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private static String USER_LOGIN = "JakeWharton";
-
-    private Disposable mDisposable;
 
     private FriendCircleAdapter mFriendCircleAdapter;
 
@@ -122,28 +115,13 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-
+    // todo: make this task background.
     private void asyncMakeData() {
-        mDisposable = Single.create((SingleOnSubscribe<List<FriendCircleBean>>) emitter ->
-                emitter.onSuccess(DataCenter.makeFriendCircleBeans(this)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((friendCircleBeans, throwable) -> {
-                    if (friendCircleBeans != null && throwable == null) {
-                        mFriendCircleAdapter.setFriendCircleBeans(friendCircleBeans);
-                    }
-                });
-    }
-
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (mDisposable != null && !mDisposable.isDisposed()) {
-            mDisposable.dispose();
+        List<FriendCircleBean> friendCircleBeans = DataCenter.makeFriendCircleBeans(this);
+        if (null != friendCircleBeans) {
+            mFriendCircleAdapter.setFriendCircleBeans(friendCircleBeans);
         }
     }
-
 
     @Override
     public void onPraiseClick(int position) {

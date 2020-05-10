@@ -9,12 +9,6 @@ import android.widget.PopupMenu;
 import com.boisneyphilippe.githubarchitecturecomponents.App;
 import com.boisneyphilippe.githubarchitecturecomponents.R;
 import com.boisneyphilippe.githubarchitecturecomponents.interfaces.OnItemClickPopupMenuListener;
-import com.boisneyphilippe.githubarchitecturecomponents.interfaces.OnStartSwipeRefreshListener;
-
-import java.util.concurrent.TimeUnit;
-
-import io.reactivex.Single;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 
 /**
  * @author KCrason
@@ -54,16 +48,6 @@ public class Utils {
         float maxContentViewWidth = Utils.getScreenWidth() - Utils.dp2px(74f);
         float maxLines = textWidth / maxContentViewWidth;
         return maxLines > 4;
-    }
-
-
-    public static void showSwipeRefreshLayout(OnStartSwipeRefreshListener onStartSwipeRefreshListener) {
-        Single.timer(10, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
-                .subscribe(aLong -> {
-                    if (onStartSwipeRefreshListener != null) {
-                        onStartSwipeRefreshListener.onStartRefresh();
-                    }
-                });
     }
 
     public static void showPopupMenu(Context context, OnItemClickPopupMenuListener onItemClickPopupMenuListener, int position, View view) {
