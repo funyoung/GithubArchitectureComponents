@@ -31,7 +31,7 @@ public class DataCenter {
     public static List<CircleItemBean> makeFriendCircleBeans(Context context, User user) {
         List<CircleItemBean> circlePostBeans = new ArrayList<>();
         circlePostBeans.add(new CircleHeaderBean(user));
-        Message message = new Message("msg_id", 6, user.getAvatar_url(), user.getName() + " send you a message from " + user.getCompany());
+        Message message = new Message("msg_id", 6, user.getAvatar_url(), user.getName() + "来新消息了");
         circlePostBeans.add(new CircleMessageBean(message));
 
         for (int i = 0; i < 1000; i++) {
