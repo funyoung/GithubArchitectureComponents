@@ -3,6 +3,7 @@ package com.boisneyphilippe.githubarchitecturecomponents.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ import com.boisneyphilippe.githubarchitecturecomponents.interfaces.OnPraiseOrCom
 import com.boisneyphilippe.githubarchitecturecomponents.span.TextMovementMethod;
 import com.boisneyphilippe.githubarchitecturecomponents.utils.Utils;
 import com.boisneyphilippe.githubarchitecturecomponents.widgets.CommentOrPraisePopupWindow;
+import com.boisneyphilippe.githubarchitecturecomponents.widgets.MessagePanelView;
 import com.boisneyphilippe.githubarchitecturecomponents.widgets.NineGridView;
 import com.boisneyphilippe.githubarchitecturecomponents.widgets.VerticalCommentWidget;
 import com.bumptech.glide.Glide;
@@ -38,7 +40,7 @@ import java.util.List;
  * @author KCrason
  * @date 2018/4/27
  */
-public class FriendCircleAdapter extends RecyclerView.Adapter<FriendCircleAdapter.BaseFriendCircleViewHolder>
+public class FriendCircleAdapter extends RecyclerView.Adapter<FriendCircleAdapter.BaseViewHolder>
         implements OnItemClickPopupMenuListener {
 
     private Context mContext;
@@ -87,19 +89,23 @@ public class FriendCircleAdapter extends RecyclerView.Adapter<FriendCircleAdapte
     }
 
     @Override
-    public BaseFriendCircleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == Constants.FriendCircleType.FRIEND_CIRCLE_TYPE_ONLY_WORD) {
             return new OnlyWordViewHolder(mLayoutInflater.inflate(R.layout.item_recycler_firend_circle_only_word, parent, false));
         } else if (viewType == Constants.FriendCircleType.FRIEND_CIRCLE_TYPE_WORD_AND_URL) {
             return new WordAndUrlViewHolder(mLayoutInflater.inflate(R.layout.item_recycler_firend_circle_word_and_url, parent, false));
         } else if (viewType == Constants.FriendCircleType.FRIEND_CIRCLE_TYPE_WORD_AND_IMAGES) {
             return new WordAndImagesViewHolder(mLayoutInflater.inflate(R.layout.item_recycler_firend_circle_word_and_images, parent, false));
+        } else if (Constants.FriendCircleType.FRIEND_CIRCLE_TYPE_HEADER == viewType) {
+            return new HeaderViewHolder(mLayoutInflater.inflate(R.layout.item_recycler_circle_header, parent, false));
+        } else if (Constants.FriendCircleType.FRIEND_CIRCLE_TYPE_MESSAGE == viewType) {
+            return new MessageViewHolder(mLayoutInflater.inflate(R.layout.item_recycler_circle_message, parent, false));
         }
         return null;
     }
 
     @Override
-    public void onBindViewHolder(BaseFriendCircleViewHolder holder, int position) {
+    public void onBindViewHolder(BaseViewHolder holder, int position) {
         if (holder != null && mFriendCircleBeans != null && position < mFriendCircleBeans.size()) {
             FriendCircleBean friendCircleBean = mFriendCircleBeans.get(position);
             makeUserBaseData(holder, friendCircleBean, position);
@@ -125,12 +131,19 @@ public class FriendCircleAdapter extends RecyclerView.Adapter<FriendCircleAdapte
                 });
                 wordAndImagesViewHolder.nineGridView.setAdapter(new NineImageAdapter(mContext, mRequestOptions,
                         mDrawableTransitionOptions, friendCircleBean.getImageUrls()));
+            } else {
+                holder.bind(friendCircleBean, position);
             }
         }
     }
 
 
-    private void makeUserBaseData(BaseFriendCircleViewHolder holder, FriendCircleBean friendCircleBean, int position) {
+    private void makeUserBaseData(BaseViewHolder baseViewHolder, FriendCircleBean friendCircleBean, int position) {
+        if (!(baseViewHolder instanceof BaseFriendCircleViewHolder)) {
+            return;
+        }
+
+        BaseFriendCircleViewHolder holder = (BaseFriendCircleViewHolder) baseViewHolder;
         holder.txtContent.setText(friendCircleBean.getContentSpan());
         setContentShowState(holder, friendCircleBean);
         holder.txtContent.setOnLongClickListener(v -> {
@@ -274,7 +287,16 @@ public class FriendCircleAdapter extends RecyclerView.Adapter<FriendCircleAdapte
         }
     }
 
-    static class BaseFriendCircleViewHolder extends RecyclerView.ViewHolder {
+    static class BaseViewHolder extends RecyclerView.ViewHolder {
+        public BaseViewHolder(@NonNull View itemView) {
+            super(itemView);
+        }
+
+        public void bind(FriendCircleBean friendCircleBean, int position) {
+        }
+    }
+
+    static class BaseFriendCircleViewHolder extends BaseViewHolder {
         public VerticalCommentWidget verticalCommentWidget;
         public TextView txtUserName;
         public View viewLine;
@@ -303,6 +325,34 @@ public class FriendCircleAdapter extends RecyclerView.Adapter<FriendCircleAdapte
             txtState = itemView.findViewById(R.id.txt_state);
             layoutPraiseAndComment = itemView.findViewById(R.id.layout_praise_and_comment);
             txtPraiseContent.setMovementMethod(new TextMovementMethod());
+        }
+    }
+
+    static class HeaderViewHolder extends BaseViewHolder {
+        private ImageView coverImageView;
+        private ImageView avatarImageView;
+        private TextView nameTextView;
+        public HeaderViewHolder(@NonNull View itemView) {
+            super(itemView);
+            coverImageView = itemView.findViewById(R.id.header_cover);
+            avatarImageView = itemView.findViewById(R.id.header_avatar);
+            nameTextView = itemView.findViewById(R.id.header_name);
+        }
+
+        @Override
+        public void bind(FriendCircleBean friendCircleBean, int position) {
+        }
+    }
+
+    static class MessageViewHolder extends BaseViewHolder {
+        private MessagePanelView messagePanelView;
+        public MessageViewHolder(@NonNull View itemView) {
+            super(itemView);
+            messagePanelView = itemView.findViewById(R.id.circle_message);
+        }
+
+        @Override
+        public void bind(FriendCircleBean friendCircleBean, int position) {
         }
     }
 }

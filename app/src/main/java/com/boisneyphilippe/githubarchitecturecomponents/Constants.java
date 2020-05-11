@@ -123,6 +123,10 @@ public class Constants {
         public final static int FRIEND_CIRCLE_TYPE_WORD_AND_IMAGES = 1;
         //分享链接
         public final static int FRIEND_CIRCLE_TYPE_WORD_AND_URL = 2;
+        // 用户信息
+        public final static int FRIEND_CIRCLE_TYPE_HEADER = 3;
+        // 新消息通知
+        public final static int FRIEND_CIRCLE_TYPE_MESSAGE = 4;
     }
 
     public final static class CommentType {

@@ -82,7 +82,7 @@ public class CommentPanelView extends LinearLayout implements OnKeyBoardStateLis
     }
 
     private void init() {
-        View itemView = LayoutInflater.from(getContext()).inflate(R.layout.view_emoji_panel, this, false);
+        View itemView = LayoutInflater.from(getContext()).inflate(R.layout.view_comment_panel, this, false);
         mEditText = itemView.findViewById(R.id.edit_text);
         mEditText.setOnTouchListener((v, event) -> {
             showSoftKeyBoard();

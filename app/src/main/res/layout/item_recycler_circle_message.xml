@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 视觉设计限制：
+1，有消息时，信息流顶部距离头部用户大头像底部98dp, 其中消息控件高度39.3dp,
+ 它上面距离头部用户大头像间距22.7dp, 下面距离信息流36dp.
+2，无消息显示时，信息流顶部距离头部用户大头像底部25.7dp.
+3, 消息和头部用户信息都随着信息流一起上下滑动。
+a, 若设计需求可斟酌，那么2的间距调整为与1里22.7dp一致，则这部分间距算作头部用户信息的底部margin，
+消息控件在有消息时显示，没消息时不显示即可。
+b, 若设计需求不可斟酌，2的间距还是25.7dp, 比22.7dp大的3dp，就要求消息控件一直显示，没有消息时
+仍然需要多出来的3dp占位。实现可以是b1. 和a类似，上部22.7dp作为头部用户信息底部margin. 没有消息显示时，控件高3dp
+ -->
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.boisneyphilippe.githubarchitecturecomponents.widgets.MessagePanelView
+        android:id="@+id/circle_message"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/circle_message_panel_height"
+        android:layout_marginBottom="33dp"
+        android:visibility="gone"
+        android:adjustViewBounds="true"
+        android:contentDescription="@null"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/circle_no_message_padding"
+        />
+
+    <View
+        android:id="@+id/circle_no_message_padding"
+        android:layout_width="match_parent"
+        android:layout_height="13dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+</android.support.constraint.ConstraintLayout>

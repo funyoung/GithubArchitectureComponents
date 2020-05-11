@@ -21,6 +21,14 @@ import java.util.List;
 public class DataCenter {
     public static List<FriendCircleBean> makeFriendCircleBeans(Context context) {
         List<FriendCircleBean> friendCircleBeans = new ArrayList<>();
+        // todo: add header and message.
+        FriendCircleBean header = new FriendCircleBean();
+        header.setViewType(Constants.FriendCircleType.FRIEND_CIRCLE_TYPE_HEADER);
+        friendCircleBeans.add(header);
+        FriendCircleBean message = new FriendCircleBean();
+        message.setViewType(Constants.FriendCircleType.FRIEND_CIRCLE_TYPE_MESSAGE);
+        friendCircleBeans.add(message);
+
         for (int i = 0; i < 1000; i++) {
             FriendCircleBean friendCircleBean = new FriendCircleBean();
             int randomValue = (int) (Math.random() * 300);
