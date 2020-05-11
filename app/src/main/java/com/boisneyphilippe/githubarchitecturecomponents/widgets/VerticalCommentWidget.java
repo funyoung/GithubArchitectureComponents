@@ -165,6 +165,4 @@ public class VerticalCommentWidget extends LinearLayout implements ViewGroup.OnH
     public void onItemClickCollection(int position) {
         Toast.makeText(getContext(), "已收藏", Toast.LENGTH_SHORT).show();
     }
-
-
 }

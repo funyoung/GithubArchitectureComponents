@@ -15,6 +15,9 @@ import com.boisneyphilippe.githubarchitecturecomponents.R;
  * @author yangfeng
  */
 public class TitleBarView extends LinearLayout {
+    private static final float MIN_ALPHA = 0f;
+    private static final float MAX_ALPHA = 1f;
+
     private ImageView iconView;
     private TextView titleView;
 
@@ -100,19 +103,19 @@ public class TitleBarView extends LinearLayout {
     public void updateByOffset(int offset) {
         if (offset < fadeOutOffsetMin) {
             changeState(STATE_INIT);
-            checkApplyingAlpha(1f);
+            checkApplyingAlpha(MAX_ALPHA);
         } else if (offset >= fadeOutOffsetMin && offset < fadeOutOffsetMax) {
             changeState(STATE_FADING_OUT);
             applyFadeOutEffect(offset);
         } else if (offset >= fadeOutOffsetMax && offset < fadeInOffsetMin) {
             changeState(STATE_FADING_OUT_END);
-            checkApplyingAlpha(0f);
+            checkApplyingAlpha(MIN_ALPHA);
         } else if (offset >= fadeInOffsetMin && offset < fadeInOffsetMax) {
             changeState(STATE_FADING_IN);
             applyFadeInEffect(offset);
         } else {
             changeState(STATE_FADING_IN_END);
-            checkApplyingAlpha(1f);
+            checkApplyingAlpha(MAX_ALPHA);
         }
     }
 
@@ -122,12 +125,12 @@ public class TitleBarView extends LinearLayout {
      */
     private void applyFadeOutEffect(int offset) {
         if (offset < fadeOutOffsetMin) {
-            checkApplyingAlpha(1f);
+            checkApplyingAlpha(MAX_ALPHA);
         } else if (offset >= fadeOutOffsetMin && offset < fadeOutOffsetMax) {
             float alpha = ((float) fadeOutOffsetMax - offset) / (fadeOutOffsetMax - fadeOutOffsetMin);
             checkApplyingAlpha(alpha);
         } else {
-            checkApplyingAlpha(0f);
+            checkApplyingAlpha(MIN_ALPHA);
         }
     }
 
@@ -143,12 +146,12 @@ public class TitleBarView extends LinearLayout {
      */
     private void applyFadeInEffect(int offset) {
         if (offset < fadeInOffsetMin) {
-            checkApplyingAlpha(0f);
+            checkApplyingAlpha(MIN_ALPHA);
         } else if (offset >= fadeInOffsetMin && offset < fadeInOffsetMax) {
             float alpha = ((float) offset - fadeInOffsetMin) / (fadeInOffsetMax - fadeInOffsetMin);
             checkApplyingAlpha(alpha);
         } else {
-            checkApplyingAlpha(1f);
+            checkApplyingAlpha(MAX_ALPHA);
         }
     }
 
@@ -159,14 +162,14 @@ public class TitleBarView extends LinearLayout {
                 titleView.setVisibility(VISIBLE);
                 iconView.setImageResource(R.drawable.back_drawable_black);
                 if (newState >= STATE_FADING_IN_END) {
-                    setAlpha(1f);
+                    setAlpha(MAX_ALPHA);
                 }
             } else if (newState <= STATE_FADING_OUT_END && state > STATE_FADING_OUT_END) {
                 setBackgroundResource(0);
                 titleView.setVisibility(GONE);
                 iconView.setImageResource(R.drawable.back_drawable);
                 if (newState < STATE_FADING_OUT) {
-                    setAlpha(1f);
+                    setAlpha(MAX_ALPHA);
                 }
             }
 

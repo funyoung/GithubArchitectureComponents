@@ -6,10 +6,10 @@ import com.boisneyphilippe.githubarchitecturecomponents.utils.Utils;
 
 import java.util.List;
 
-public class FriendCircleBean {
-
-    private int viewType;
-
+/**
+ * @author yangfeng
+ */
+public class CirclePostBean extends CircleItemBean {
     private String content;
 
     private List<CommentBean> commentBeans;
@@ -25,6 +25,10 @@ public class FriendCircleBean {
     private boolean isShowPraise;
 
     private boolean isExpanded;
+
+    public CirclePostBean(int viewType) {
+        super(viewType);
+    }
 
     public boolean isExpanded() {
         return isExpanded;
@@ -68,14 +72,6 @@ public class FriendCircleBean {
 
     public UserBean getUserBean() {
         return userBean;
-    }
-
-    public int getViewType() {
-        return viewType;
-    }
-
-    public void setViewType(int viewType) {
-        this.viewType = viewType;
     }
 
     public String getContent() {

@@ -11,7 +11,8 @@ import android.widget.Toast;
 
 import com.boisneyphilippe.githubarchitecturecomponents.R;
 import com.boisneyphilippe.githubarchitecturecomponents.adapters.FriendCircleAdapter;
-import com.boisneyphilippe.githubarchitecturecomponents.beans.FriendCircleBean;
+import com.boisneyphilippe.githubarchitecturecomponents.beans.CircleItemBean;
+import com.boisneyphilippe.githubarchitecturecomponents.beans.CirclePostBean;
 import com.boisneyphilippe.githubarchitecturecomponents.interfaces.OnPraiseOrCommentClickListener;
 import com.boisneyphilippe.githubarchitecturecomponents.others.DataCenter;
 import com.boisneyphilippe.githubarchitecturecomponents.others.FriendsCircleAdapterDivideLine;
@@ -132,9 +133,9 @@ public class MainActivity extends AppCompatActivity implements
 
     // todo: make this task background.
     private void asyncMakeData() {
-        List<FriendCircleBean> friendCircleBeans = DataCenter.makeFriendCircleBeans(this);
-        if (null != friendCircleBeans) {
-            mFriendCircleAdapter.setFriendCircleBeans(friendCircleBeans);
+        List<CircleItemBean> circlePostBeans = DataCenter.makeFriendCircleBeans(this);
+        if (null != circlePostBeans) {
+            mFriendCircleAdapter.setFriendCircleBeans(circlePostBeans);
         }
     }
 

@@ -3,8 +3,9 @@ package com.boisneyphilippe.githubarchitecturecomponents.others;
 import android.content.Context;
 
 import com.boisneyphilippe.githubarchitecturecomponents.Constants;
+import com.boisneyphilippe.githubarchitecturecomponents.beans.CircleItemBean;
+import com.boisneyphilippe.githubarchitecturecomponents.beans.CirclePostBean;
 import com.boisneyphilippe.githubarchitecturecomponents.beans.CommentBean;
-import com.boisneyphilippe.githubarchitecturecomponents.beans.FriendCircleBean;
 import com.boisneyphilippe.githubarchitecturecomponents.beans.OtherInfoBean;
 import com.boisneyphilippe.githubarchitecturecomponents.beans.PraiseBean;
 import com.boisneyphilippe.githubarchitecturecomponents.beans.UserBean;
@@ -13,43 +14,43 @@ import com.boisneyphilippe.githubarchitecturecomponents.utils.SpanUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.boisneyphilippe.githubarchitecturecomponents.Constants.FriendCircleType.*;
+
 
 /**
  * @author KCrason
  * @date 2018/5/2
  */
 public class DataCenter {
-    public static List<FriendCircleBean> makeFriendCircleBeans(Context context) {
-        List<FriendCircleBean> friendCircleBeans = new ArrayList<>();
+    public static List<CircleItemBean> makeFriendCircleBeans(Context context) {
+        List<CircleItemBean> circlePostBeans = new ArrayList<>();
         // todo: add header and message.
-        FriendCircleBean header = new FriendCircleBean();
-        header.setViewType(Constants.FriendCircleType.FRIEND_CIRCLE_TYPE_HEADER);
-        friendCircleBeans.add(header);
-        FriendCircleBean message = new FriendCircleBean();
-        message.setViewType(Constants.FriendCircleType.FRIEND_CIRCLE_TYPE_MESSAGE);
-        friendCircleBeans.add(message);
+        CirclePostBean header = new CirclePostBean(FRIEND_CIRCLE_TYPE_HEADER);
+        circlePostBeans.add(header);
+        CirclePostBean message = new CirclePostBean(FRIEND_CIRCLE_TYPE_MESSAGE);
+        circlePostBeans.add(message);
 
         for (int i = 0; i < 1000; i++) {
-            FriendCircleBean friendCircleBean = new FriendCircleBean();
+            final CirclePostBean circlePostBean;
             int randomValue = (int) (Math.random() * 300);
             if (randomValue < 100) {
-                friendCircleBean.setViewType(Constants.FriendCircleType.FRIEND_CIRCLE_TYPE_ONLY_WORD);
+                circlePostBean = new CirclePostBean(FRIEND_CIRCLE_TYPE_ONLY_WORD);
             } else if (randomValue < 200) {
-                friendCircleBean.setViewType(Constants.FriendCircleType.FRIEND_CIRCLE_TYPE_WORD_AND_IMAGES);
+                circlePostBean = new CirclePostBean(FRIEND_CIRCLE_TYPE_WORD_AND_IMAGES);
             } else {
-                friendCircleBean.setViewType(Constants.FriendCircleType.FRIEND_CIRCLE_TYPE_WORD_AND_URL);
+                circlePostBean = new CirclePostBean(FRIEND_CIRCLE_TYPE_WORD_AND_URL);
             }
-            friendCircleBean.setCommentBeans(makeCommentBeans(context));
-            friendCircleBean.setImageUrls(makeImages());
+            circlePostBean.setCommentBeans(makeCommentBeans(context));
+            circlePostBean.setImageUrls(makeImages());
             List<PraiseBean> praiseBeans = makePraiseBeans();
-            friendCircleBean.setPraiseSpan(SpanUtils.makePraiseSpan(context, praiseBeans));
-            friendCircleBean.setPraiseBeans(praiseBeans);
-            friendCircleBean.setContent(Constants.CONTENT[(int) (Math.random() * 10)]);
+            circlePostBean.setPraiseSpan(SpanUtils.makePraiseSpan(context, praiseBeans));
+            circlePostBean.setPraiseBeans(praiseBeans);
+            circlePostBean.setContent(Constants.CONTENT[(int) (Math.random() * 10)]);
 
             UserBean userBean = new UserBean();
             userBean.setUserName(Constants.USER_NAME[(int) (Math.random() * 30)]);
             userBean.setUserAvatarUrl("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588931838505&di=80343c9fc5f894c801c8bfe76080809a&imgtype=0&src=http%3A%2F%2F01.minipic.eastday.com%2F20170319%2F20170319000016_0d58c8f901682ca78d62ee887d5b07cc_6.jpeg");
-            friendCircleBean.setUserBean(userBean);
+            circlePostBean.setUserBean(userBean);
 
 
             OtherInfoBean otherInfoBean = new OtherInfoBean();
@@ -60,10 +61,10 @@ public class DataCenter {
             } else {
                 otherInfoBean.setSource("");
             }
-            friendCircleBean.setOtherInfoBean(otherInfoBean);
-            friendCircleBeans.add(friendCircleBean);
+            circlePostBean.setOtherInfoBean(otherInfoBean);
+            circlePostBeans.add(circlePostBean);
         }
-        return friendCircleBeans;
+        return circlePostBeans;
     }
 
 
