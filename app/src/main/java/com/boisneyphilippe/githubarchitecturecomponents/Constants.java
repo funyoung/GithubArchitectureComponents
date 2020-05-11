@@ -5,58 +5,6 @@ package com.boisneyphilippe.githubarchitecturecomponents;
  * @date 2018/4/27
  */
 public class Constants {
-
-    public static final String EMOJI_REGEX = "\\[([\u4e00-\u9fa5\\w])+\\]|[\\ud83c\\udc00-\\ud83c\\udfff]|[\\ud83d\\udc00-\\ud83d\\udfff]|[\\u2600-\\u27ff]";
-
-    public static final String URL_REGEX = "(((http|https)://)|((?<!((http|https)://))www\\.))" + ".*?" + "(?=(&nbsp;|[\\u4e00-\\u9fa5]|\\s|　|<br />|$|[<>]))";
-
-    public static final String TOPIC_REGEX = "#[\\p{Print}\\p{InCJKUnifiedIdeographs}&&[^#]]+#";
-
-    public static final String AT_REGEX = "@[\u4e00-\u9fa5a-zA-Z0-9_-·\\.]+[\u200B]";
-
-    public static final String SCHEME_URL = "com.kcrason.url//";
-
-    public static final String SCHEME_EMOJI = "com.kcrason.emoji//";
-
-    public static final String SCHEME_TOPIC = "com.kcrason.topic//";
-
-    public static final String SCHEME_AT = "com.kcrason.at//";
-
-    public static final String BLUE = "#ff0000";
-
-    public static String[] IMAGE_URL = new String[]{
-            "http://img1.imgtn.bdimg.com/it/u=1874831330,3373343559&fm=26&gp=0.jpg",
-            "http://img4.imgtn.bdimg.com/it/u=160632510,2775955300&fm=15&gp=0.jpg",
-            "http://img3.imgtn.bdimg.com/it/u=501715605,2757275208&fm=11&gp=0.jpg",
-            "http://img3.imgtn.bdimg.com/it/u=2112067038,1599405951&fm=11&gp=0.jpg",
-            "http://img3.imgtn.bdimg.com/it/u=2295623130,4149199279&fm=15&gp=0.jpg",
-            "http://img0.imgtn.bdimg.com/it/u=1531514309,3295369127&fm=26&gp=0.jpg",
-            "http://img3.imgtn.bdimg.com/it/u=3882410576,2279170187&fm=15&gp=0.jpg",
-            "http://img2.imgtn.bdimg.com/it/u=2436856793,3642795991&fm=15&gp=0.jpg",
-            "http://img3.imgtn.bdimg.com/it/u=3429923399,2542930346&fm=15&gp=0.jpg",
-            "http://img5.imgtn.bdimg.com/it/u=2830518909,1900395834&fm=15&gp=0.jpg",
-            "http://img1.imgtn.bdimg.com/it/u=1874831330,3373343559&fm=26&gp=0.jpg",
-            "http://img4.imgtn.bdimg.com/it/u=160632510,2775955300&fm=15&gp=0.jpg",
-            "http://img3.imgtn.bdimg.com/it/u=501715605,2757275208&fm=11&gp=0.jpg",
-            "http://img3.imgtn.bdimg.com/it/u=2112067038,1599405951&fm=11&gp=0.jpg",
-            "http://img3.imgtn.bdimg.com/it/u=2295623130,4149199279&fm=15&gp=0.jpg",
-            "http://img0.imgtn.bdimg.com/it/u=1531514309,3295369127&fm=26&gp=0.jpg",
-            "http://img3.imgtn.bdimg.com/it/u=3882410576,2279170187&fm=15&gp=0.jpg",
-            "http://img2.imgtn.bdimg.com/it/u=2436856793,3642795991&fm=15&gp=0.jpg",
-            "http://img3.imgtn.bdimg.com/it/u=3429923399,2542930346&fm=15&gp=0.jpg",
-            "http://img5.imgtn.bdimg.com/it/u=2830518909,1900395834&fm=15&gp=0.jpg",
-            "http://img1.imgtn.bdimg.com/it/u=1874831330,3373343559&fm=26&gp=0.jpg",
-            "http://img4.imgtn.bdimg.com/it/u=160632510,2775955300&fm=15&gp=0.jpg",
-            "http://img3.imgtn.bdimg.com/it/u=501715605,2757275208&fm=11&gp=0.jpg",
-            "http://img3.imgtn.bdimg.com/it/u=2112067038,1599405951&fm=11&gp=0.jpg",
-            "http://img3.imgtn.bdimg.com/it/u=2295623130,4149199279&fm=15&gp=0.jpg",
-            "http://img0.imgtn.bdimg.com/it/u=1531514309,3295369127&fm=26&gp=0.jpg",
-            "http://img3.imgtn.bdimg.com/it/u=3882410576,2279170187&fm=15&gp=0.jpg",
-            "http://img2.imgtn.bdimg.com/it/u=2436856793,3642795991&fm=15&gp=0.jpg",
-            "http://img3.imgtn.bdimg.com/it/u=3429923399,2542930346&fm=15&gp=0.jpg",
-            "http://img5.imgtn.bdimg.com/it/u=2830518909,1900395834&fm=15&gp=0.jpg"
-    };
-
     public final static String[] USER_NAME = {
             "光速", "出单队", "精英队", "精英", "风启",
             "野狼盟", "篮球人", "秃鸡队", "奔驰财团", "永创第一",
@@ -135,12 +83,4 @@ public class Constants {
         //回复评论
         public final static int COMMENT_TYPE_REPLY = 1;
     }
-
-    public final static class EmojiType {
-        //单一评论
-        public final static int EMOJI_TYPE_01 = 1;
-        //回复评论
-        public final static int EMOJI_TYPE_02 = 2;
-    }
-
 }
