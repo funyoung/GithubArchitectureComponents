@@ -16,13 +16,16 @@ import android.widget.Toast;
 
 import com.boisneyphilippe.githubarchitecturecomponents.Constants;
 import com.boisneyphilippe.githubarchitecturecomponents.R;
+import com.boisneyphilippe.githubarchitecturecomponents.beans.CircleHeaderBean;
 import com.boisneyphilippe.githubarchitecturecomponents.beans.CircleItemBean;
+import com.boisneyphilippe.githubarchitecturecomponents.beans.CircleMessageBean;
 import com.boisneyphilippe.githubarchitecturecomponents.beans.CirclePostBean;
 import com.boisneyphilippe.githubarchitecturecomponents.beans.OtherInfoBean;
 import com.boisneyphilippe.githubarchitecturecomponents.beans.UserBean;
 import com.boisneyphilippe.githubarchitecturecomponents.interfaces.OnItemClickPopupMenuListener;
 import com.boisneyphilippe.githubarchitecturecomponents.interfaces.OnPraiseOrCommentClickListener;
 import com.boisneyphilippe.githubarchitecturecomponents.span.TextMovementMethod;
+import com.boisneyphilippe.githubarchitecturecomponents.ui.RenderUtil;
 import com.boisneyphilippe.githubarchitecturecomponents.utils.Utils;
 import com.boisneyphilippe.githubarchitecturecomponents.widgets.CommentOrPraisePopupWindow;
 import com.boisneyphilippe.githubarchitecturecomponents.widgets.MessagePanelView;
@@ -33,6 +36,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 import com.github.ielse.imagewatcher.ImageWatcher;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -354,7 +358,15 @@ public class FriendCircleAdapter extends RecyclerView.Adapter<FriendCircleAdapte
         }
 
         @Override
-        public void bind(CircleItemBean circlePostBean, int position) {
+        public void bind(CircleItemBean circleItemBean, int position) {
+            if (circleItemBean instanceof CircleHeaderBean) {
+                CircleHeaderBean bean = (CircleHeaderBean) circleItemBean;
+                RenderUtil.rounding(Glide.with(coverImageView), coverImageView, bean.getCover(), R.drawable.circle_header_cover, 0);
+                RenderUtil.rounding(Glide.with(avatarImageView), avatarImageView, bean.getAvatar(), R.drawable.circle_header_avatar, R.dimen.circle_header_avatar_radius);
+                nameTextView.setText(bean.getUserName());
+            } else {
+                throw new InvalidParameterException("expected CircleHeaderBean class but " + circleItemBean.getClass().getSimpleName());
+            }
         }
     }
 
@@ -363,10 +375,26 @@ public class FriendCircleAdapter extends RecyclerView.Adapter<FriendCircleAdapte
         public MessageViewHolder(@NonNull View itemView) {
             super(itemView);
             messagePanelView = itemView.findViewById(R.id.circle_message);
+            messagePanelView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CircleMessageBean bean = messagePanelView.getBean();
+                    if (null != bean) {
+                        Toast.makeText(messagePanelView.getContext(), "onMessage clicked.", Toast.LENGTH_LONG).show();
+                        messagePanelView.consume();
+                    }
+                }
+            });
         }
 
         @Override
-        public void bind(CircleItemBean circlePostBean, int position) {
+        public void bind(CircleItemBean bean, int position) {
+            if (bean instanceof CircleMessageBean) {
+                CircleMessageBean messageBean = (CircleMessageBean) bean;
+                messagePanelView.setBean(messageBean);
+            } else {
+                throw new InvalidParameterException("expected CircleMessageBean class but " + bean.getClass().getSimpleName());
+            }
         }
     }
 }

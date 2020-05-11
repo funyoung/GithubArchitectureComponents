@@ -29,13 +29,17 @@ public class RenderUtil {
      * @param radiusId
      */
     public static void rounding(RequestManager requestManager, ImageView imageView, String url, @DrawableRes int placeholderId, @DimenRes int radiusId) {
-        int radius = imageView.getResources().getDimensionPixelOffset(radiusId);
-        BitmapTransformation transformation = new RoundedCorners(radius);
-        requestManager.load(url+"t")
-                .error(placeholderId).placeholder(placeholderId)
-                .apply(RequestOptions.bitmapTransform(transformation))
-                .thumbnail(loadTransform(imageView.getContext(), placeholderId, transformation))
-                .into(imageView);
+        RequestBuilder requestBuilder = requestManager.load(url)
+                .error(placeholderId).placeholder(placeholderId);
+
+        if (radiusId != 0) {
+            int radius = imageView.getResources().getDimensionPixelOffset(radiusId);
+            BitmapTransformation transformation = new RoundedCorners(radius);
+            requestBuilder.apply(RequestOptions.bitmapTransform(transformation))
+                    .thumbnail(loadTransform(imageView.getContext(), placeholderId, transformation));
+        }
+
+        requestBuilder.into(imageView);
     }
 
     private static RequestBuilder<Drawable> loadTransform(Context context, @DrawableRes int placeholderId, BitmapTransformation transformation) {

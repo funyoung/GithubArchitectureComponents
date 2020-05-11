@@ -11,6 +11,8 @@
     <dimen name="circle_header_avatar_size">58dp</dimen>
     <dimen name="circle_header_avatar_radius">5dp</dimen>
 
+    <dimen name="circle_message_avatar_radius">3dp</dimen>
+
     <dimen name="toolbar_icon_size">40dp</dimen>
 
     <dimen name="circle_header_panel_height">324.7dp</dimen>
