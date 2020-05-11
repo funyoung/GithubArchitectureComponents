@@ -1,7 +1,10 @@
 package com.boisneyphilippe.githubarchitecturecomponents.ui.activities;
 
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,11 +15,13 @@ import android.widget.Toast;
 import com.boisneyphilippe.githubarchitecturecomponents.R;
 import com.boisneyphilippe.githubarchitecturecomponents.adapters.FriendCircleAdapter;
 import com.boisneyphilippe.githubarchitecturecomponents.beans.CircleItemBean;
-import com.boisneyphilippe.githubarchitecturecomponents.beans.CirclePostBean;
+import com.boisneyphilippe.githubarchitecturecomponents.data.database.entity.User;
 import com.boisneyphilippe.githubarchitecturecomponents.interfaces.OnPraiseOrCommentClickListener;
 import com.boisneyphilippe.githubarchitecturecomponents.others.DataCenter;
 import com.boisneyphilippe.githubarchitecturecomponents.others.FriendsCircleAdapterDivideLine;
 import com.boisneyphilippe.githubarchitecturecomponents.utils.Utils;
+import com.boisneyphilippe.githubarchitecturecomponents.view_models.Injection;
+import com.boisneyphilippe.githubarchitecturecomponents.view_models.UserProfileViewModel;
 import com.boisneyphilippe.githubarchitecturecomponents.widgets.CommentPanelView;
 import com.boisneyphilippe.githubarchitecturecomponents.widgets.GlideImageWatcherLoader;
 import com.boisneyphilippe.githubarchitecturecomponents.widgets.TitleBarView;
@@ -35,6 +40,9 @@ public class MainActivity extends AppCompatActivity implements
 
     private static String USER_LOGIN = "JakeWharton";
 
+    private final ViewModelProvider.Factory viewModelFactory = Injection.injectUserProfileViewModelFactory();
+    private UserProfileViewModel viewModel;
+
     private FriendCircleAdapter mFriendCircleAdapter;
 
     private ImageWatcher imageWatcher;
@@ -51,7 +59,6 @@ public class MainActivity extends AppCompatActivity implements
 //        this.showFragment(savedInstanceState);
         ButterKnife.bind(this, this);
 
-
         imageWatcher = ImageWatcherHelper.with(this) // 一般来讲，ImageWatcher尺寸占据全屏
                 .setLoader(new GlideImageWatcherLoader())
                 //.setIndexProvider(new DotIndexProvider()) // 自定义
@@ -67,8 +74,10 @@ public class MainActivity extends AppCompatActivity implements
             }
         });
 
+
+        this.configureViewModel();
 //        Utils.showSwipeRefreshLayout(this::asyncMakeData);
-        asyncMakeData();
+//        asyncMakeData();
     }
 
 //    private void showFragment(Bundle savedInstanceState){
@@ -132,8 +141,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     // todo: make this task background.
-    private void asyncMakeData() {
-        List<CircleItemBean> circlePostBeans = DataCenter.makeFriendCircleBeans(this);
+    private void asyncMakeData(User user) {
+        List<CircleItemBean> circlePostBeans = DataCenter.makeFriendCircleBeans(this, user);
         if (null != circlePostBeans) {
             mFriendCircleAdapter.setFriendCircleBeans(circlePostBeans);
         }
@@ -160,4 +169,33 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onPictureLongPress(ImageView var1, Uri var2, int var3) {
     }
+
+    // -----------------
+    // CONFIGURATION
+    // -----------------
+
+    private void configureViewModel(){
+        String userLogin = USER_LOGIN;
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(UserProfileViewModel.class);
+        viewModel.init(userLogin);
+        viewModel.getUser().observe(this, user -> updateUI(user));
+    }
+
+    // -----------------
+    // UPDATE UI
+    // -----------------
+
+    private void updateUI(@Nullable User user){
+        if (user != null){
+//            Glide.with(this).load(user.getAvatar_url()).apply(RequestOptions.circleCropTransform()).into(imageView);
+//            this.username.setText(user.getName());
+//            this.company.setText(user.getCompany());
+//            this.website.setText(user.getBlog());
+//            Glide.with(this).load(user.getAvatar_url()).apply(RequestOptions.circleCropTransform()).into(headerAvatar);
+//            RenderUtil.rounding(Glide.with(this), headerAvatar, user.getAvatar_url(), R.drawable.circle_header_avatar, R.dimen.circle_header_avatar_radius);
+        }
+
+        asyncMakeData(user);
+    }
+
 }

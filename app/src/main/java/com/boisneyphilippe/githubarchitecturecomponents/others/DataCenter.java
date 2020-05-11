@@ -3,18 +3,24 @@ package com.boisneyphilippe.githubarchitecturecomponents.others;
 import android.content.Context;
 
 import com.boisneyphilippe.githubarchitecturecomponents.Constants;
+import com.boisneyphilippe.githubarchitecturecomponents.beans.CircleHeaderBean;
 import com.boisneyphilippe.githubarchitecturecomponents.beans.CircleItemBean;
+import com.boisneyphilippe.githubarchitecturecomponents.beans.CircleMessageBean;
 import com.boisneyphilippe.githubarchitecturecomponents.beans.CirclePostBean;
 import com.boisneyphilippe.githubarchitecturecomponents.beans.CommentBean;
 import com.boisneyphilippe.githubarchitecturecomponents.beans.OtherInfoBean;
 import com.boisneyphilippe.githubarchitecturecomponents.beans.PraiseBean;
 import com.boisneyphilippe.githubarchitecturecomponents.beans.UserBean;
+import com.boisneyphilippe.githubarchitecturecomponents.data.database.entity.Message;
+import com.boisneyphilippe.githubarchitecturecomponents.data.database.entity.User;
 import com.boisneyphilippe.githubarchitecturecomponents.utils.SpanUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.boisneyphilippe.githubarchitecturecomponents.Constants.FriendCircleType.*;
+import static com.boisneyphilippe.githubarchitecturecomponents.Constants.FriendCircleType.FRIEND_CIRCLE_TYPE_ONLY_WORD;
+import static com.boisneyphilippe.githubarchitecturecomponents.Constants.FriendCircleType.FRIEND_CIRCLE_TYPE_WORD_AND_IMAGES;
+import static com.boisneyphilippe.githubarchitecturecomponents.Constants.FriendCircleType.FRIEND_CIRCLE_TYPE_WORD_AND_URL;
 
 
 /**
@@ -22,13 +28,11 @@ import static com.boisneyphilippe.githubarchitecturecomponents.Constants.FriendC
  * @date 2018/5/2
  */
 public class DataCenter {
-    public static List<CircleItemBean> makeFriendCircleBeans(Context context) {
+    public static List<CircleItemBean> makeFriendCircleBeans(Context context, User user) {
         List<CircleItemBean> circlePostBeans = new ArrayList<>();
-        // todo: add header and message.
-        CirclePostBean header = new CirclePostBean(FRIEND_CIRCLE_TYPE_HEADER);
-        circlePostBeans.add(header);
-        CirclePostBean message = new CirclePostBean(FRIEND_CIRCLE_TYPE_MESSAGE);
-        circlePostBeans.add(message);
+        circlePostBeans.add(new CircleHeaderBean(user));
+        Message message = new Message("msg_id", 6, user.getAvatar_url(), user.getName() + " send you a message from " + user.getCompany());
+        circlePostBeans.add(new CircleMessageBean(message));
 
         for (int i = 0; i < 1000; i++) {
             final CirclePostBean circlePostBean;
