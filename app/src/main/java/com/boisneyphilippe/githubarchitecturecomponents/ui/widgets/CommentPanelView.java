@@ -22,6 +22,9 @@ import com.boisneyphilippe.githubarchitecturecomponents.R;
 import com.boisneyphilippe.githubarchitecturecomponents.ui.interfaces.OnKeyBoardStateListener;
 import com.boisneyphilippe.githubarchitecturecomponents.utils.Utils;
 
+/**
+ * @author yangfeng
+ */
 public class CommentPanelView extends LinearLayout implements OnKeyBoardStateListener {
     private LinearLayout mLayoutPanel;
 

@@ -11,6 +11,9 @@
     <color name="circle_message_panel_background">#575757</color>
     <color name="circle_title_bar_background">@android:color/darker_gray</color>
 
+    <color name="comment_send_normal" >#ffff713d</color>
+    <color name="comment_send_disable" >#48ff713d</color>
+
     <color name="base_333333">#333333</color>
     <color name="base_F2F2F2">#f2f2f2</color>
     <color name="base_F8F8F8">#f8f8f8</color>
