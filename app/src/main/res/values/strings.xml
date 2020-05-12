@@ -2,7 +2,9 @@
     <string name="app_name">@string/circle_title</string>
 
     <string name="hello_text">天涯叨客</string>
+
     <string name="circle_title">穿越朋友圈</string>
+    <string name="circle_cover_hint">封面功能准备上线，敬请期待</string>
 
     <string name="large_text">
         "Material is the metaphor.\n\n"

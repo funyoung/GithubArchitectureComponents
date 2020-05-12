@@ -31,7 +31,7 @@ public class UserProfileViewModelFactory implements ViewModelProvider.Factory {
 
     private static class SingletonHolder {
         private static final UserProfileViewModel INSTANCE = new UserProfileViewModel(
-                new UserRepository(getUserService(), getUserDao(), getExecutor())
+                new UserRepository(getUserService(), getExecutor())
         );
 
         private static Executor getExecutor() {
@@ -42,6 +42,7 @@ public class UserProfileViewModelFactory implements ViewModelProvider.Factory {
         private static UserDao getUserDao() {
             MyDatabase myDatabase = Room.databaseBuilder(App.context,
                     MyDatabase.class, "MyDatabase.db")
+                    .fallbackToDestructiveMigration()
                     .build();
             return myDatabase.userDao();
         }

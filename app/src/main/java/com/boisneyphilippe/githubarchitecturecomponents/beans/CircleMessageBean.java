@@ -8,6 +8,7 @@ import static com.boisneyphilippe.githubarchitecturecomponents.Constants.FriendC
 
 /**
  * Adapter between CircleItemBean and Message
+ * @author yangfeng
  */
 public class CircleMessageBean extends CircleItemBean {
     @NonNull
@@ -23,5 +24,9 @@ public class CircleMessageBean extends CircleItemBean {
 
     public String getMessage() {
         return message.getMessage();
+    }
+
+    public long getMomentID() {
+        return message.getMomentID();
     }
 }

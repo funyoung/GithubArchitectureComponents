@@ -1,15 +1,14 @@
 package com.boisneyphilippe.githubarchitecturecomponents.data.repositories;
 
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.boisneyphilippe.githubarchitecturecomponents.App;
 import com.boisneyphilippe.githubarchitecturecomponents.data.api.UserWebservice;
 import com.boisneyphilippe.githubarchitecturecomponents.data.database.entity.User;
-import com.boisneyphilippe.githubarchitecturecomponents.data.database.dao.UserDao;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.Executor;
 
@@ -18,19 +17,16 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by Philippe on 02/03/2018.
+ * @author yangfeng
  */
 public class UserRepository {
-
-    private static int FRESH_TIMEOUT_IN_MINUTES = 1;
-
     private final UserWebservice webservice;
-    private final UserDao userDao;
     private final Executor executor;
 
-    public UserRepository(UserWebservice webservice, UserDao userDao, Executor executor) {
+    private final MutableLiveData<User> liveUser = new MutableLiveData<>();
+
+    public UserRepository(UserWebservice webservice, Executor executor) {
         this.webservice = webservice;
-        this.userDao = userDao;
         this.executor = executor;
     }
 
@@ -38,43 +34,30 @@ public class UserRepository {
     // ---
 
     public LiveData<User> getUser(String userLogin) {
-        refreshUser(userLogin); // try to refresh data if possible from Github Api
-        return userDao.load(userLogin); // return a LiveData directly from the database.
+        refreshUser(userLogin);
+        return liveUser;
     }
 
     // ---
 
     private void refreshUser(final String userLogin) {
         executor.execute(() -> {
-            // Check if user was fetched recently
-            boolean userExists = (userDao.hasUser(userLogin, getMaxRefreshTime(new Date())) != null);
-            // If user have to be updated
-            if (!userExists) {
-                webservice.getUser(userLogin).enqueue(new Callback<User>() {
-                    @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
-                        Log.e("TAG", "DATA REFRESHED FROM NETWORK");
-                        Toast.makeText(App.context, "Data refreshed from network !", Toast.LENGTH_LONG).show();
-                        executor.execute(() -> {
-                            User user = response.body();
-                            user.setLastRefresh(new Date());
-                            userDao.save(user);
-                        });
-                    }
+            webservice.getUser(userLogin).enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    Log.e("TAG", "DATA REFRESHED FROM NETWORK");
+                    Toast.makeText(App.context, "Data refreshed from network !", Toast.LENGTH_LONG).show();
+                    executor.execute(() -> {
+                        User user = response.body();
+                        user.setLastRefresh(new Date());
+                        liveUser.postValue(user);
+                    });
+                }
 
-                    @Override
-                    public void onFailure(Call<User> call, Throwable t) { }
-                });
-            }
+                @Override
+                public void onFailure(Call<User> call, Throwable t) { }
+            });
         });
     }
 
-    // ---
-
-    private Date getMaxRefreshTime(Date currentDate){
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(currentDate);
-        cal.add(Calendar.MINUTE, -FRESH_TIMEOUT_IN_MINUTES);
-        return cal.getTime();
-    }
 }

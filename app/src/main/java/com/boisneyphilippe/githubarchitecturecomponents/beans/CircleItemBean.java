@@ -17,4 +17,8 @@ public abstract class CircleItemBean {
     public int getViewType() {
         return viewType;
     }
+
+    public long getId() {
+        return 0;
+    }
 }

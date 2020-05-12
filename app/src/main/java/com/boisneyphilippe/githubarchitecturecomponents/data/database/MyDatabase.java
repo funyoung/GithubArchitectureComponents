@@ -12,7 +12,7 @@ import com.boisneyphilippe.githubarchitecturecomponents.data.database.entity.Use
  * Created by Philippe on 02/03/2018.
  */
 
-@Database(entities = {User.class}, version = 1, exportSchema = false)
+@Database(entities = {User.class}, version = 2, exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class MyDatabase extends RoomDatabase {
 

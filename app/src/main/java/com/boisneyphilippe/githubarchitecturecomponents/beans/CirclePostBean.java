@@ -133,5 +133,9 @@ public class CirclePostBean extends CircleItemBean {
 
     private SpannableStringBuilder praiseSpan;
 
-
+    @Override
+    public long getId() {
+        // todo:
+        return 0;
+    }
 }

@@ -26,6 +26,7 @@ import com.boisneyphilippe.githubarchitecturecomponents.interfaces.OnItemClickPo
 import com.boisneyphilippe.githubarchitecturecomponents.interfaces.OnPraiseOrCommentClickListener;
 import com.boisneyphilippe.githubarchitecturecomponents.span.TextMovementMethod;
 import com.boisneyphilippe.githubarchitecturecomponents.ui.RenderUtil;
+import com.boisneyphilippe.githubarchitecturecomponents.utils.Todo;
 import com.boisneyphilippe.githubarchitecturecomponents.utils.Utils;
 import com.boisneyphilippe.githubarchitecturecomponents.widgets.CommentOrPraisePopupWindow;
 import com.boisneyphilippe.githubarchitecturecomponents.widgets.MessagePanelView;
@@ -66,6 +67,22 @@ public class FriendCircleAdapter extends RecyclerView.Adapter<FriendCircleAdapte
 
     private ImageWatcher mImageWatcher;
 
+    private final MessageViewHolder.OnMessageClickedListener listener = new MessageViewHolder.OnMessageClickedListener() {
+        @Override
+        public void onMessageClicked(long id) {
+            Todo.onMessageClicked(id);
+
+            int offset = Todo.DEFAULT_MESSAGE_OFFSET;
+            for (int i = 0; i < mCirclePostBeans.size(); i++) {
+                CircleItemBean itemBean = mCirclePostBeans.get(i);
+                if (itemBean.getId() == id) {
+                    offset = i;
+                    break;
+                }
+            }
+        }
+    };
+
     public FriendCircleAdapter(Context context, ImageWatcher imageWatcher) {
         this.mContext = context;
         this.mImageWatcher = imageWatcher;
@@ -105,7 +122,7 @@ public class FriendCircleAdapter extends RecyclerView.Adapter<FriendCircleAdapte
         } else if (Constants.FriendCircleType.FRIEND_CIRCLE_TYPE_HEADER == viewType) {
             return new HeaderViewHolder(mLayoutInflater.inflate(R.layout.item_recycler_circle_header, parent, false));
         } else if (Constants.FriendCircleType.FRIEND_CIRCLE_TYPE_MESSAGE == viewType) {
-            return new MessageViewHolder(mLayoutInflater.inflate(R.layout.item_recycler_circle_message, parent, false));
+            return new MessageViewHolder(listener, mLayoutInflater.inflate(R.layout.item_recycler_circle_message, parent, false));
         }
         return null;
     }
@@ -355,6 +372,12 @@ public class FriendCircleAdapter extends RecyclerView.Adapter<FriendCircleAdapte
             coverImageView = itemView.findViewById(R.id.header_cover);
             avatarImageView = itemView.findViewById(R.id.header_avatar);
             nameTextView = itemView.findViewById(R.id.header_name);
+            coverImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Todo.showToast(coverImageView.getContext(), R.string.circle_cover_hint);
+                }
+            });
         }
 
         @Override
@@ -371,9 +394,19 @@ public class FriendCircleAdapter extends RecyclerView.Adapter<FriendCircleAdapte
     }
 
     static class MessageViewHolder extends BaseViewHolder {
+        public interface OnMessageClickedListener {
+            /**
+             * 点开新消息
+             * @param id 新消息id
+             */
+            void onMessageClicked(long id);
+        }
+
+        private final OnMessageClickedListener listener;
         private MessagePanelView messagePanelView;
-        public MessageViewHolder(@NonNull View itemView) {
+        public MessageViewHolder(OnMessageClickedListener listener, @NonNull View itemView) {
             super(itemView);
+            this.listener = listener;
             messagePanelView = itemView.findViewById(R.id.circle_message);
             messagePanelView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -382,6 +415,9 @@ public class FriendCircleAdapter extends RecyclerView.Adapter<FriendCircleAdapte
                     if (null != bean) {
                         Toast.makeText(messagePanelView.getContext(), "onMessage clicked.", Toast.LENGTH_LONG).show();
                         messagePanelView.consume();
+                        if (null != listener) {
+                            listener.onMessageClicked(bean.getMomentID());
+                        }
                     }
                 }
             });
