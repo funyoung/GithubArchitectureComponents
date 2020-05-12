@@ -21,6 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * singleton
  */
 public class UserProfileViewModelFactory implements ViewModelProvider.Factory {
+    @Override
     public <T extends ViewModel> T create(Class<T> modelClass) {
         if (modelClass.isAssignableFrom(UserProfileViewModel.class)) {
             return (T) SingletonHolder.INSTANCE;

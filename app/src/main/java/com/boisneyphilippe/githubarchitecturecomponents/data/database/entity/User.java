@@ -11,7 +11,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.Date;
 
 /**
- * Created by Philippe on 02/03/2018.
+ * @author yangfeng
  */
 @Entity
 public class User {
@@ -21,6 +21,43 @@ public class User {
     @SerializedName("id")
     @Expose
     private String id;
+
+    private String avatar;
+    private String nickname;
+    private String summary;
+    private String specialMark;
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public String getSpecialMark() {
+        return specialMark;
+    }
+
+    public void setSpecialMark(String specialMark) {
+        this.specialMark = specialMark;
+    }
 
     @SerializedName("login")
     @Expose

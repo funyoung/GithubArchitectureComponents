@@ -9,10 +9,14 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by Philippe on 02/03/2018.
+ * @author yangfeng
  */
 @Entity
 public class Message {
+    private String icon;
+    private String text;
+    private long momentID;
+
     @PrimaryKey
     @NonNull
     @SerializedName("id")
@@ -55,4 +59,28 @@ public class Message {
     public void setAvatar_url(String avatar_url) { this.avatar_url = avatar_url; }
     public void setOffset(int offset) { this.offset = offset; }
     public void setMessage(String message) { this.message = message; }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public long getMomentID() {
+        return momentID;
+    }
+
+    public void setMomentID(long momentID) {
+        this.momentID = momentID;
+    }
 }

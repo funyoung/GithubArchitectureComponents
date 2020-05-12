@@ -7,7 +7,9 @@ import com.boisneyphilippe.githubarchitecturecomponents.data.database.entity.Use
 import static com.boisneyphilippe.githubarchitecturecomponents.Constants.FriendCircleType.FRIEND_CIRCLE_TYPE_HEADER;
 
 /**
+ * Adapting CircleItemBean to User.
  *
+ * @author yangfeng
  */
 public class CircleHeaderBean extends CircleItemBean {
     @NonNull
