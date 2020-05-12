@@ -22,6 +22,9 @@ import com.boisneyphilippe.githubarchitecturecomponents.R;
 import com.sogou.inputmethod.moment.ui.interfaces.OnKeyBoardStateListener;
 import com.sogou.inputmethod.moment.utils.Utils;
 
+/**
+ * @author yangfeng
+ */
 public class CommentPanelView extends LinearLayout implements OnKeyBoardStateListener {
     private LinearLayout mLayoutPanel;
 
