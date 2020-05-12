@@ -17,7 +17,7 @@
 
         <include layout="@layout/include_item_recycler_content"/>
 
-        <com.boisneyphilippe.githubarchitecturecomponents.widgets.NineGridView
+        <com.boisneyphilippe.githubarchitecturecomponents.ui.widgets.NineGridView
             android:id="@+id/nine_grid_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -1,10 +1,10 @@
 package com.boisneyphilippe.githubarchitecturecomponents;
 
-import com.boisneyphilippe.githubarchitecturecomponents.data.database.entity.HomePage;
-import com.boisneyphilippe.githubarchitecturecomponents.data.database.entity.Message;
-import com.boisneyphilippe.githubarchitecturecomponents.data.database.entity.Page;
-import com.boisneyphilippe.githubarchitecturecomponents.data.database.entity.User;
-import com.boisneyphilippe.githubarchitecturecomponents.utils.DataResponse;
+import com.boisneyphilippe.githubarchitecturecomponents.repositories.entity.HomePage;
+import com.boisneyphilippe.githubarchitecturecomponents.repositories.entity.Message;
+import com.boisneyphilippe.githubarchitecturecomponents.repositories.entity.Page;
+import com.boisneyphilippe.githubarchitecturecomponents.repositories.entity.User;
+import com.boisneyphilippe.githubarchitecturecomponents.repositories.api.DataResponse;
 
 import org.junit.Before;
 import org.junit.Test;

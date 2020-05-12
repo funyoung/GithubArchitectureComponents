@@ -2,7 +2,7 @@ package com.boisneyphilippe.githubarchitecturecomponents.db;
 
 import android.support.test.runner.AndroidJUnit4;
 
-import com.boisneyphilippe.githubarchitecturecomponents.data.database.entity.User;
+import com.boisneyphilippe.githubarchitecturecomponents.repositories.entity.User;
 import com.boisneyphilippe.githubarchitecturecomponents.utils.LiveDataTestUtil;
 
 import org.junit.Test;

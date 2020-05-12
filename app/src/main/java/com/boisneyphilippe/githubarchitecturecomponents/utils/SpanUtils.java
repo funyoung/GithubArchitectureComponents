@@ -7,9 +7,9 @@ import android.text.Spanned;
 import android.text.TextUtils;
 
 import com.boisneyphilippe.githubarchitecturecomponents.R;
-import com.boisneyphilippe.githubarchitecturecomponents.beans.PraiseBean;
-import com.boisneyphilippe.githubarchitecturecomponents.span.TextClickSpan;
-import com.boisneyphilippe.githubarchitecturecomponents.span.VerticalImageSpan;
+import com.boisneyphilippe.githubarchitecturecomponents.ui.beans.PraiseBean;
+import com.boisneyphilippe.githubarchitecturecomponents.ui.span.TextClickSpan;
+import com.boisneyphilippe.githubarchitecturecomponents.ui.span.VerticalImageSpan;
 
 import java.util.List;
 

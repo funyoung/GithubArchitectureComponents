@@ -20,14 +20,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <com.boisneyphilippe.githubarchitecturecomponents.widgets.CommentPanelView
+    <com.boisneyphilippe.githubarchitecturecomponents.ui.widgets.CommentPanelView
         android:id="@+id/comment_panel_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="bottom" />
 
 
-    <com.boisneyphilippe.githubarchitecturecomponents.widgets.TitleBarView
+    <com.boisneyphilippe.githubarchitecturecomponents.ui.widgets.TitleBarView
         android:id="@+id/title_bar_view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/toolbar_height"

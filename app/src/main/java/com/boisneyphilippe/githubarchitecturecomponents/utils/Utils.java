@@ -8,7 +8,7 @@ import android.widget.PopupMenu;
 
 import com.boisneyphilippe.githubarchitecturecomponents.App;
 import com.boisneyphilippe.githubarchitecturecomponents.R;
-import com.boisneyphilippe.githubarchitecturecomponents.interfaces.OnItemClickPopupMenuListener;
+import com.boisneyphilippe.githubarchitecturecomponents.ui.interfaces.OnItemClickPopupMenuListener;
 
 /**
  * @author KCrason
