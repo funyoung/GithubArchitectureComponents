@@ -1,10 +1,10 @@
 package com.boisneyphilippe.githubarchitecturecomponents;
 
-import com.boisneyphilippe.githubarchitecturecomponents.repositories.entity.HomePage;
-import com.boisneyphilippe.githubarchitecturecomponents.repositories.entity.Message;
-import com.boisneyphilippe.githubarchitecturecomponents.repositories.entity.Page;
-import com.boisneyphilippe.githubarchitecturecomponents.repositories.entity.User;
-import com.boisneyphilippe.githubarchitecturecomponents.repositories.api.DataResponse;
+import com.sogou.inputmethod.moment.repositories.entity.HomePage;
+import com.sogou.inputmethod.moment.repositories.entity.Message;
+import com.sogou.inputmethod.moment.repositories.entity.Page;
+import com.sogou.inputmethod.moment.repositories.entity.User;
+import com.sogou.inputmethod.moment.repositories.api.DataResponse;
 
 import org.junit.Before;
 import org.junit.Test;

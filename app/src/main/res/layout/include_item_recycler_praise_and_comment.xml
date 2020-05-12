@@ -25,7 +25,7 @@
         android:layout_marginTop="6dp"
         android:background="@color/base_DCDCDC" />
 
-    <com.boisneyphilippe.githubarchitecturecomponents.ui.widgets.VerticalCommentWidget
+    <com.sogou.inputmethod.moment.ui.widgets.VerticalCommentWidget
         android:id="@+id/vertical_comment_widget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

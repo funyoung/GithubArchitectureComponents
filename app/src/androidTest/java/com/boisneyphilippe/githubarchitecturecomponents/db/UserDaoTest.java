@@ -2,8 +2,8 @@ package com.boisneyphilippe.githubarchitecturecomponents.db;
 
 import android.support.test.runner.AndroidJUnit4;
 
-import com.boisneyphilippe.githubarchitecturecomponents.repositories.entity.User;
-import com.boisneyphilippe.githubarchitecturecomponents.utils.LiveDataTestUtil;
+import com.sogou.inputmethod.moment.repositories.entity.User;
+import com.sogou.inputmethod.moment.utils.LiveDataTestUtil;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

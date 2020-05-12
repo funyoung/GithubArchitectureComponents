@@ -16,7 +16,7 @@ b, 若设计需求不可斟酌，2的间距还是25.7dp, 比22.7dp大的3dp，�
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.boisneyphilippe.githubarchitecturecomponents.ui.widgets.MessagePanelView
+    <com.sogou.inputmethod.moment.ui.widgets.MessagePanelView
         android:id="@+id/circle_message"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/circle_message_panel_height"
