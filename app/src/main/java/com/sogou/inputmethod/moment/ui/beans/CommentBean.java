@@ -3,14 +3,12 @@ package com.sogou.inputmethod.moment.ui.beans;
 import android.content.Context;
 import android.text.SpannableStringBuilder;
 
-import com.sogou.inputmethod.moment.Constants;
 import com.sogou.inputmethod.moment.utils.SpanUtils;
 
+/**
+ * @author yangfeng
+ */
 public class CommentBean {
-
-    private int commentType;
-
-    private String parentUserName;
 
     private String childUserName;
 
@@ -19,22 +17,6 @@ public class CommentBean {
     private int childUserId;
 
     private String commentContent;
-
-    public int getCommentType() {
-        return commentType;
-    }
-
-    public void setCommentType(int commentType) {
-        this.commentType = commentType;
-    }
-
-    public String getParentUserName() {
-        return parentUserName;
-    }
-
-    public void setParentUserName(String parentUserName) {
-        this.parentUserName = parentUserName;
-    }
 
     public String getChildUserName() {
         return childUserName;
@@ -79,10 +61,6 @@ public class CommentBean {
     }
 
     public void build(Context context) {
-        if (commentType == Constants.CommentType.COMMENT_TYPE_SINGLE) {
-            commentContentSpan = SpanUtils.makeSingleCommentSpan(context, childUserName, commentContent);
-        } else {
-            commentContentSpan = SpanUtils.makeReplyCommentSpan(context, parentUserName, childUserName, commentContent);
-        }
+        commentContentSpan = SpanUtils.makeSingleCommentSpan(context, childUserName, commentContent);
     }
 }

@@ -17,7 +17,7 @@ import com.sogou.inputmethod.moment.ui.adapters.FriendCircleAdapter;
 import com.sogou.inputmethod.moment.ui.beans.CircleItemBean;
 import com.sogou.inputmethod.moment.repositories.entity.User;
 import com.sogou.inputmethod.moment.ui.interfaces.OnPraiseOrCommentClickListener;
-import com.sogou.inputmethod.moment.ui.others.DataCenter;
+import com.sogou.inputmethod.moment.DataCenter;
 import com.sogou.inputmethod.moment.ui.others.FriendsCircleAdapterDivideLine;
 import com.sogou.inputmethod.moment.utils.Utils;
 import com.sogou.inputmethod.moment.ui.view_models.Injection;

@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.sogou.inputmethod.moment.repositories.entity.User;
 
-import static com.sogou.inputmethod.moment.Constants.FriendCircleType.FRIEND_CIRCLE_TYPE_HEADER;
+import static com.sogou.inputmethod.moment.ui.adapters.FriendCircleType.FRIEND_CIRCLE_TYPE_HEADER;
 
 /**
  * Adapting CircleItemBean to User.

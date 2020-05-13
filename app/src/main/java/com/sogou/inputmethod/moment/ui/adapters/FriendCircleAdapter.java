@@ -13,8 +13,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.sogou.inputmethod.moment.Constants;
 import com.boisneyphilippe.githubarchitecturecomponents.R;
 import com.sogou.inputmethod.moment.ui.beans.CircleHeaderBean;
 import com.sogou.inputmethod.moment.ui.beans.CircleItemBean;
@@ -112,16 +110,16 @@ public class FriendCircleAdapter extends RecyclerView.Adapter<FriendCircleAdapte
 
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == Constants.FriendCircleType.FRIEND_CIRCLE_TYPE_ONLY_WORD) {
+        if (viewType == FriendCircleType.FRIEND_CIRCLE_TYPE_ONLY_WORD) {
             return new OnlyWordViewHolder(mLayoutInflater.inflate(R.layout.item_recycler_firend_circle_only_word, parent, false));
-        } else if (viewType == Constants.FriendCircleType.FRIEND_CIRCLE_TYPE_WORD_AND_URL) {
+        } else if (viewType == FriendCircleType.FRIEND_CIRCLE_TYPE_WORD_AND_URL) {
             return new WordAndUrlViewHolder(mLayoutInflater.inflate(R.layout.item_recycler_firend_circle_word_and_url, parent, false));
-        } else if (viewType == Constants.FriendCircleType.FRIEND_CIRCLE_TYPE_WORD_AND_IMAGES) {
+        } else if (viewType == FriendCircleType.FRIEND_CIRCLE_TYPE_WORD_AND_IMAGES) {
             return new WordAndImagesViewHolder(mLayoutInflater.inflate(R.layout.item_recycler_firend_circle_word_and_images, parent, false),
                     mImageWatcher, mRequestOptions, mDrawableTransitionOptions);
-        } else if (Constants.FriendCircleType.FRIEND_CIRCLE_TYPE_HEADER == viewType) {
+        } else if (FriendCircleType.FRIEND_CIRCLE_TYPE_HEADER == viewType) {
             return new HeaderViewHolder(mLayoutInflater.inflate(R.layout.item_recycler_circle_header, parent, false));
-        } else if (Constants.FriendCircleType.FRIEND_CIRCLE_TYPE_MESSAGE == viewType) {
+        } else if (FriendCircleType.FRIEND_CIRCLE_TYPE_MESSAGE == viewType) {
             return new MessageViewHolder(listener, mLayoutInflater.inflate(R.layout.item_recycler_circle_message, parent, false));
         }
         return null;

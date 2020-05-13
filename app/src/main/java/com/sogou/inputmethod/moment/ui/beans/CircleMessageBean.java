@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.sogou.inputmethod.moment.repositories.entity.Message;
 
-import static com.sogou.inputmethod.moment.Constants.FriendCircleType.FRIEND_CIRCLE_TYPE_MESSAGE;
+import static com.sogou.inputmethod.moment.ui.adapters.FriendCircleType.FRIEND_CIRCLE_TYPE_MESSAGE;
 
 /**
  * Adapter between CircleItemBean and Message
