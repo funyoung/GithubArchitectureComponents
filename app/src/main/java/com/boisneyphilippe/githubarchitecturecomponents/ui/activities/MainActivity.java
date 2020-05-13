@@ -17,7 +17,7 @@ import com.boisneyphilippe.githubarchitecturecomponents.ui.adapters.FriendCircle
 import com.boisneyphilippe.githubarchitecturecomponents.ui.beans.CircleItemBean;
 import com.boisneyphilippe.githubarchitecturecomponents.repositories.entity.User;
 import com.boisneyphilippe.githubarchitecturecomponents.ui.interfaces.OnPraiseOrCommentClickListener;
-import com.boisneyphilippe.githubarchitecturecomponents.ui.others.DataCenter;
+import com.boisneyphilippe.githubarchitecturecomponents.DataCenter;
 import com.boisneyphilippe.githubarchitecturecomponents.ui.others.FriendsCircleAdapterDivideLine;
 import com.boisneyphilippe.githubarchitecturecomponents.utils.Utils;
 import com.boisneyphilippe.githubarchitecturecomponents.ui.view_models.Injection;

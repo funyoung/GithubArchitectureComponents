@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.boisneyphilippe.githubarchitecturecomponents.repositories.entity.Message;
 
-import static com.boisneyphilippe.githubarchitecturecomponents.Constants.FriendCircleType.FRIEND_CIRCLE_TYPE_MESSAGE;
+import static com.boisneyphilippe.githubarchitecturecomponents.ui.adapters.FriendCircleType.FRIEND_CIRCLE_TYPE_MESSAGE;
 
 /**
  * Adapter between CircleItemBean and Message

@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.boisneyphilippe.githubarchitecturecomponents.repositories.entity.User;
 
-import static com.boisneyphilippe.githubarchitecturecomponents.Constants.FriendCircleType.FRIEND_CIRCLE_TYPE_HEADER;
+import static com.boisneyphilippe.githubarchitecturecomponents.ui.adapters.FriendCircleType.FRIEND_CIRCLE_TYPE_HEADER;
 
 /**
  * Adapting CircleItemBean to User.
