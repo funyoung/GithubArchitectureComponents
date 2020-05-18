@@ -1,0 +1,13 @@
+R_DEF: Internal format may change without notice
+local
+id image_orientation
+id state_current
+id state_default
+id state_exit
+id state_origin
+id state_temp
+id state_thumb
+id state_touch_drag
+id state_touch_scale
+id view_image_watcher
+mipmap error_picture
