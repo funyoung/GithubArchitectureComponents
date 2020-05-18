@@ -13,20 +13,20 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.boisneyphilippe.githubarchitecturecomponents.R;
+import com.bumptech.glide.Glide;
+import com.github.ielse.imagewatcher.ImageWatcher;
+import com.github.ielse.imagewatcher.ImageWatcherHelper;
+import com.sogou.inputmethod.moment.repositories.entity.User;
 import com.sogou.inputmethod.moment.ui.adapters.FriendCircleAdapter;
 import com.sogou.inputmethod.moment.ui.beans.CircleItemBean;
-import com.sogou.inputmethod.moment.repositories.entity.User;
 import com.sogou.inputmethod.moment.ui.interfaces.OnPraiseOrCommentClickListener;
 import com.sogou.inputmethod.moment.ui.others.FriendsCircleAdapterDivideLine;
-import com.sogou.inputmethod.moment.utils.Utils;
 import com.sogou.inputmethod.moment.ui.view_models.Injection;
 import com.sogou.inputmethod.moment.ui.view_models.UserProfileViewModel;
 import com.sogou.inputmethod.moment.ui.widgets.CommentPanelView;
 import com.sogou.inputmethod.moment.ui.widgets.GlideImageWatcherLoader;
 import com.sogou.inputmethod.moment.ui.widgets.TitleBarView;
-import com.bumptech.glide.Glide;
-import com.github.ielse.imagewatcher.ImageWatcher;
-import com.github.ielse.imagewatcher.ImageWatcherHelper;
+import com.sogou.inputmethod.moment.utils.Utils;
 
 import java.util.List;
 
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements
 
         imageWatcher = ImageWatcherHelper.with(this) // 一般来讲，ImageWatcher尺寸占据全屏
                 .setLoader(new GlideImageWatcherLoader())
-                //.setIndexProvider(new DotIndexProvider()) // 自定义
+//                .setIndexProvider(new DotIndexProvider()) // 自定义
                 .create();
 
         configRecyclerView(recyclerView, imageWatcher);
