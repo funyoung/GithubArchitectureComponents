@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IndicatorView extends LinearLayout {
+    private static final int DOT_SIZE = 7; // dp
     private final List<ImageView> dotList = new ArrayList<>();
     private final int size;
 
@@ -24,7 +25,7 @@ public class IndicatorView extends LinearLayout {
         DisplayMetrics d = new DisplayMetrics();
         ((WindowManager)context.getSystemService(Context.WINDOW_SERVICE))
                 .getDefaultDisplay().getMetrics(d);
-        size = (int)(6 * d.density + 0.5);
+        size = (int)(DOT_SIZE * d.density + 0.5);
         setPadding(size, 0, 0, 0);
     }
 
@@ -50,15 +51,21 @@ public class IndicatorView extends LinearLayout {
         }
     }
 
-    public void select(int pos, int normalRes, int selectRes) {
-        if (dotList.size() == 0) return;
+    public void select(int count, int pos, int normalRes, int selectRes, boolean initLayout) {
+        if (!initLayout || count != dotList.size()) {
+            reset(count, pos, normalRes, selectRes);
+        } else {
+            if (dotList.size() == 0) {
+                return;
+            }
 
-        pos = pos % dotList.size();
+            pos = pos % dotList.size();
 
-        for (int i = 0; i < dotList.size(); i++) {
-            final ImageView vDot = dotList.get(i);
-            vDot.setImageResource(i == pos ? selectRes :
-                    normalRes);
+            for (int i = 0; i < dotList.size(); i++) {
+                final ImageView vDot = dotList.get(i);
+                vDot.setImageResource(i == pos ? selectRes :
+                        normalRes);
+            }
         }
     }
 }

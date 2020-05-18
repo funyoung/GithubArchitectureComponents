@@ -2,13 +2,18 @@ package com.sogou.inputmethod.moment.utils;
 
 import android.content.Context;
 import android.graphics.Paint;
+import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.Display;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.PopupMenu;
 
-import com.sogou.inputmethod.moment.App;
 import com.boisneyphilippe.githubarchitecturecomponents.R;
+import com.sogou.inputmethod.moment.App;
 import com.sogou.inputmethod.moment.ui.interfaces.OnItemClickPopupMenuListener;
+
+import java.lang.reflect.Method;
 
 /**
  * @author KCrason
@@ -72,5 +77,30 @@ public class Utils {
             return true;
         });
         popup.show(); //showing popup menu
+    }
+
+    public static int getBottomKeyboardHeight(){
+        int screenHeight =  getAccurateScreenDpi()[1];
+        DisplayMetrics dm = App.context.getResources().getDisplayMetrics();
+        int heightDifference = screenHeight - dm.heightPixels;
+        return heightDifference;
+    }
+
+    public static int[] getAccurateScreenDpi()
+    {
+        int[] screenWH = new int[2];
+        WindowManager windowManager = (WindowManager) App.context.getSystemService(Context.WINDOW_SERVICE);
+        Display display = windowManager.getDefaultDisplay();
+        DisplayMetrics dm = new DisplayMetrics();
+        try {
+            Class<?> c = Class.forName("android.view.Display");
+            Method method = c.getMethod("getRealMetrics",DisplayMetrics.class);
+            method.invoke(display, dm);
+            screenWH[0] = dm.widthPixels;
+            screenWH[1] = dm.heightPixels;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return screenWH;
     }
 }

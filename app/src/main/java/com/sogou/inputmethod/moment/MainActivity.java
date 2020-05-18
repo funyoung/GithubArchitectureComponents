@@ -2,6 +2,8 @@ package com.sogou.inputmethod.moment;
 
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,7 +11,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.boisneyphilippe.githubarchitecturecomponents.R;
@@ -17,6 +23,7 @@ import com.bumptech.glide.Glide;
 import com.github.ielse.imagewatcher.ImageWatcher;
 import com.github.ielse.imagewatcher.ImageWatcherHelper;
 import com.sogou.inputmethod.moment.repositories.entity.User;
+import com.sogou.inputmethod.moment.ui.DotIndexProvider;
 import com.sogou.inputmethod.moment.ui.adapters.FriendCircleAdapter;
 import com.sogou.inputmethod.moment.ui.beans.CircleItemBean;
 import com.sogou.inputmethod.moment.ui.interfaces.OnPraiseOrCommentClickListener;
@@ -60,7 +67,8 @@ public class MainActivity extends AppCompatActivity implements
 
         imageWatcher = ImageWatcherHelper.with(this) // 一般来讲，ImageWatcher尺寸占据全屏
                 .setLoader(new GlideImageWatcherLoader())
-//                .setIndexProvider(new DotIndexProvider()) // 自定义
+                .setIndexProvider(new DotIndexProvider()) // 自定义
+//                .setIndexProvider(new MyIndexProvider())
                 .create();
 
         configRecyclerView(recyclerView, imageWatcher);
@@ -197,4 +205,34 @@ public class MainActivity extends AppCompatActivity implements
         asyncMakeData(user);
     }
 
+    public class MyIndexProvider implements ImageWatcher.IndexProvider {
+        TextView tCurrentIdx;
+
+        @Override
+        public View initialView(Context context) {
+            tCurrentIdx = new TextView(context);
+            FrameLayout.LayoutParams lpCurrentIdx = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+            lpCurrentIdx.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
+            tCurrentIdx.setLayoutParams(lpCurrentIdx);
+            tCurrentIdx.setTextColor(0xFFFFFFFF);
+//            DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+//            float tCurrentIdxTransY = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30, displayMetrics) + 0.5f;
+//            tCurrentIdx.setTranslationY(tCurrentIdxTransY);
+//            tCurrentIdx.setTranslationY(-150);
+            tCurrentIdx.setTranslationY(-Utils.getBottomKeyboardHeight());
+            tCurrentIdx.setBackgroundColor(Color.RED);
+            return tCurrentIdx;
+        }
+
+        @Override
+        public void onPageChanged(ImageWatcher imageWatcher, int position, List<Uri> dataList) {
+            if (dataList.size() > 1) {
+                tCurrentIdx.setVisibility(View.VISIBLE);
+                final String idxInfo = (position + 1) + " / " + dataList.size();
+                tCurrentIdx.setText(idxInfo);
+            } else {
+                tCurrentIdx.setVisibility(View.GONE);
+            }
+        }
+    }
 }

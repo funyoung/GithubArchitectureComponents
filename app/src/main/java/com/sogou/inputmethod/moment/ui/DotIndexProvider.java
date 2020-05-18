@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 
 import com.boisneyphilippe.githubarchitecturecomponents.R;
 import com.github.ielse.imagewatcher.ImageWatcher;
+import com.sogou.inputmethod.moment.utils.Utils;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class DotIndexProvider implements ImageWatcher.IndexProvider {
         ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE))
                 .getDefaultDisplay().getMetrics(d);
         int size = (int) (20 * d.density + 0.5);
-        lp.setMargins(0, 0, 0, size);
+        lp.setMargins(0, 0, 0, Utils.getBottomKeyboardHeight() + size);
 
         initLayout = false;
         return indicatorView;
@@ -36,11 +37,6 @@ public class DotIndexProvider implements ImageWatcher.IndexProvider {
 
     @Override
     public void onPageChanged(ImageWatcher imageWatcher, int position, List<Uri> dataList) {
-        if (!initLayout) {
-            initLayout = true;
-            indicatorView.reset(dataList.size(), position, R.drawable.b_gray_dcdcdc_oval, R.drawable.b_yellow_ffb100_oval);
-        } else {
-            indicatorView.select(position, R.drawable.b_gray_dcdcdc_oval, R.drawable.b_yellow_ffb100_oval);
-        }
+        indicatorView.select(dataList.size(), position, R.drawable.b_gray_dcdcdc_oval, R.drawable.b_yellow_ffb100_oval, initLayout);
     }
 }
